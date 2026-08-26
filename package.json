@@ -1,0 +1,10 @@
+{
+  "name": "our-little-corner",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A daily check-in app for two — selfie check-ins, food logs, diary, and mood notes.",
+  "dependencies": {
+    "@upstash/redis": "^1.34.0"
+  }
+}
