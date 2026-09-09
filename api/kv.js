@@ -1,20 +1,20 @@
-import { Redis } from '@upstash/redis';
+import { MongoClient } from 'mongodb';
 
-// Works with the env var names Vercel's Marketplace Redis integration uses
-// (KV_REST_API_URL / KV_REST_API_TOKEN) or a manually-connected Upstash
-// account (UPSTASH_REDIS_REST_URL / UPSTASH_REDIS_REST_TOKEN) — whichever
-// pair you end up with after connecting a Redis database to this project.
-const redis = new Redis({
-  url: process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL,
-  token: process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN,
-});
+const uri = process.env.MONGODB_URI;
+const dbName = process.env.MONGODB_DB || 'ourlittlecorner';
 
-// Optional shared-passcode gate. If you set an APP_PASSCODE environment
-// variable in your Vercel project, every request must send it back as the
-// `x-app-key` header or it's rejected with 401. If you never set that env
-// var, this check is skipped entirely and the API is open to anyone who has
-// the URL (fine for a private, unguessable link; add the passcode if you
-// want a real lock on it).
+
+let cached = global._mongo;
+if (!cached) cached = global._mongo = { promise: null };
+
+async function getCollection() {
+  if (!cached.promise) {
+    cached.promise = MongoClient.connect(uri);
+  }
+  const client = await cached.promise;
+  return client.db(dbName).collection('kv');
+}
+
 function isAuthorized(req) {
   const required = process.env.APP_PASSCODE;
   if (!required) return true;
@@ -25,22 +25,21 @@ export default async function handler(req, res) {
   if (!isAuthorized(req)) {
     return res.status(401).json({ error: 'unauthorized' });
   }
-
   try {
+    const col = await getCollection();
+
     if (req.method === 'GET') {
       const { key } = req.query;
       if (!key) return res.status(400).json({ error: 'missing key' });
-      const value = await redis.get(key);
-      if (value === null || value === undefined) {
-        return res.status(404).json({ error: 'not found' });
-      }
-      return res.status(200).json({ key, value });
+      const doc = await col.findOne({ _id: key });
+      if (!doc) return res.status(404).json({ error: 'not found' });
+      return res.status(200).json({ key, value: doc.value });
     }
 
     if (req.method === 'POST') {
       const { key, value } = req.body || {};
       if (!key) return res.status(400).json({ error: 'missing key' });
-      await redis.set(key, value);
+      await col.updateOne({ _id: key }, { $set: { value } }, { upsert: true });
       return res.status(200).json({ key, value });
     }
 
