@@ -4,9 +4,24 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
 <title>our little corner</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Nunito:wght@400;600;700;800&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
 <style>
+  /* Fonts are served from this app, not Google Fonts, which is unreachable
+     from mainland China and would stall the page load. */
+  @font-face{font-family:'Gaegu';font-style:normal;font-weight:400;font-display:swap;src:url('fonts/gaegu-latin-400-normal.woff2') format('woff2');}
+  @font-face{font-family:'Gaegu';font-style:normal;font-weight:700;font-display:swap;src:url('fonts/gaegu-latin-700-normal.woff2') format('woff2');}
+  @font-face{font-family:'Caveat';font-style:normal;font-weight:500;font-display:swap;src:url('fonts/caveat-latin-500-normal.woff2') format('woff2');}
+  @font-face{font-family:'Caveat';font-style:normal;font-weight:700;font-display:swap;src:url('fonts/caveat-latin-700-normal.woff2') format('woff2');}
+  @font-face{font-family:'Nunito';font-style:normal;font-weight:400;font-display:swap;src:url('fonts/nunito-latin-400-normal.woff2') format('woff2');}
+  @font-face{font-family:'Nunito';font-style:normal;font-weight:600;font-display:swap;src:url('fonts/nunito-latin-600-normal.woff2') format('woff2');}
+  @font-face{font-family:'Nunito';font-style:normal;font-weight:700;font-display:swap;src:url('fonts/nunito-latin-700-normal.woff2') format('woff2');}
+  @font-face{font-family:'Nunito';font-style:normal;font-weight:800;font-display:swap;src:url('fonts/nunito-latin-800-normal.woff2') format('woff2');}
+  /* extended latin (accented characters) — browser only downloads these if used */
+  @font-face{font-family:'Caveat';font-style:normal;font-weight:500;font-display:swap;src:url('fonts/caveat-latin-ext-500-normal.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+  @font-face{font-family:'Caveat';font-style:normal;font-weight:700;font-display:swap;src:url('fonts/caveat-latin-ext-700-normal.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+  @font-face{font-family:'Nunito';font-style:normal;font-weight:400;font-display:swap;src:url('fonts/nunito-latin-ext-400-normal.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+  @font-face{font-family:'Nunito';font-style:normal;font-weight:600;font-display:swap;src:url('fonts/nunito-latin-ext-600-normal.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+  @font-face{font-family:'Nunito';font-style:normal;font-weight:700;font-display:swap;src:url('fonts/nunito-latin-ext-700-normal.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
+  @font-face{font-family:'Nunito';font-style:normal;font-weight:800;font-display:swap;src:url('fonts/nunito-latin-ext-800-normal.woff2') format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;}
   :root{
     --cream:#FBF3E3;
     --cream-deep:#F2E6CC;
@@ -86,7 +101,7 @@
   .modal-backdrop.center .modal{ border-radius:22px; border-bottom:3px solid var(--espresso); }
   .modal h2{ margin-top:0; }
   label.field-label{ display:block; font-weight:800; font-size:13px; margin:14px 0 5px; color:var(--matcha-deep); }
-  input[type=text], input[type=date], input[type=time], textarea{
+  input[type=text], input[type=date], input[type=time], select, textarea{
     width:100%; padding:10px 12px; border-radius:12px; border:2px solid var(--espresso);
     font-family:'Nunito',sans-serif; font-size:15px; background:var(--white); color:var(--espresso);
   }
@@ -123,8 +138,8 @@
     background:linear-gradient(180deg, var(--strawberry) 0%, var(--white) 100%);
     text-align:center; padding:22px 16px;
   }
-  .countdown-nums{ display:flex; justify-content:center; gap:10px; margin:12px 0 4px; }
-  .num-box{ background:var(--white); border:2.5px solid var(--espresso); border-radius:14px; padding:10px 12px; min-width:58px; }
+  .countdown-nums{ display:flex; justify-content:center; gap:8px; margin:12px 0 4px; }
+  .num-box{ background:var(--white); border:2.5px solid var(--espresso); border-radius:14px; padding:10px 8px; min-width:0; flex:1; max-width:76px; }
   .num-box .n{ font-family:'Gaegu',cursive; font-size:28px; font-weight:700; line-height:1; }
   .num-box .l{ font-size:11px; text-transform:uppercase; letter-spacing:0.5px; color:var(--matcha-deep); font-weight:700; }
   .locked-overlay{
@@ -200,12 +215,18 @@
     padding:9px 18px; border-radius:20px; font-weight:700; font-size:13.5px; z-index:80; border:2px solid var(--espresso);
     box-shadow:var(--shadow);
   }
+  .offline-banner{
+    background:#C0392B; color:var(--white); font-size:12.5px; font-weight:800; text-align:center;
+    padding:8px 14px; border-bottom:3px solid var(--espresso); line-height:1.35;
+  }
   .hidden{ display:none !important; }
   .disclosure{ font-size:11.5px; color:#8a7a6b; text-align:center; margin-top:2px; padding:0 10px; }
 </style>
 </head>
 <body>
 <div class="app" id="app">
+
+  <div class="offline-banner hidden" id="offlineBanner">can't reach the database — nothing you do right now is being saved</div>
 
   <header>
     <div class="brand-row">
@@ -334,6 +355,11 @@
       <input type="date" id="setMeetDate">
       <input type="time" id="setMeetTime">
     </div>
+    <div class="hint">enter this in <b>your own</b> local time — the countdown shows the same moment to both of you.</div>
+
+    <label class="field-label">our shared day starts in</label>
+    <select id="setTimeZone"></select>
+    <div class="hint">both of you must pick the same zone, or you'll each be writing to a different "today".</div>
 
     <label class="field-label">i am currently</label>
     <div class="side-pick">
@@ -390,28 +416,70 @@ const DEFAULT_NOTES_B = [
   "you are my absolute favorite person"
 ];
 const MOOD_COLORS = ["#9FB2C4","#B7C79A","#838F58","#F0AE5C","#E38098"];
+// Sync cadence. Vercel functions can't hold a websocket open, so the app
+// polls a tiny "has anything changed?" endpoint instead. While you're
+// actually using it that's every 3s, which feels live; when you've been
+// idle a couple of minutes it backs off so you don't burn through
+// function invocations.
+const CHECK_ACTIVE_MS = 3000;
+const CHECK_IDLE_MS = 25000;
+const IDLE_AFTER_MS = 120000;
 
 let settings = null;
-let mySide = null; // 'A' or 'B'
-let currentDay = null; // cached today's day object
-const todayStr = () => {
-  const d = new Date();
-  return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
-};
+let mySide = null;        // 'A' or 'B' — stays on this device
+let currentDay = null;    // today's shared record
+let currentDayStr = null;
+let offline = false;
+let pollTimer = null;
+const seenRev = {};            // key -> revision we already hold locally
+let lastInteraction = Date.now();
+
+const $ = (id) => document.getElementById(id);
+const pad = (n) => String(n).padStart(2, "0");
+const otherSide = (s) => (s === "A" ? "B" : "A");
+const deviceTZ = (() => {
+  try { return Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC"; }
+  catch(e){ return "UTC"; }
+})();
+
+/* ---------------- which calendar day is "today" ----------------
+   Both people must agree on this or you'd each be writing to a
+   different record and never see each other. It's stored in shared
+   settings, not per device.                                        */
+function dayString(date, tz){
+  try{
+    return new Intl.DateTimeFormat("en-CA", {
+      timeZone: tz, year:"numeric", month:"2-digit", day:"2-digit"
+    }).format(date);
+  }catch(e){
+    return date.getFullYear()+"-"+pad(date.getMonth()+1)+"-"+pad(date.getDate());
+  }
+}
+const todayStr = () => dayString(new Date(), (settings && settings.timeZone) || deviceTZ);
 const dayKey = (ds) => "day:"+ds;
 
 function toast(msg){
-  const t = document.getElementById("toast");
+  const t = $("toast");
   t.textContent = msg;
   t.classList.remove("hidden");
-  setTimeout(()=>t.classList.add("hidden"), 2200);
+  clearTimeout(t._timer);
+  t._timer = setTimeout(()=>t.classList.add("hidden"), 2600);
 }
 
+function setOffline(isOffline, detail){
+  offline = isOffline;
+  const b = $("offlineBanner");
+  b.classList.toggle("hidden", !isOffline);
+  if (isOffline && detail) b.title = detail;
+}
+
+/* ---------------- defaults ---------------- */
 function defaultSettings(){
   return {
     appTitle: "our little corner",
     names: { A: "Winnie", B: "Topten" },
-    meetDate: null, // ISO string
+    meetDate: null,          // ISO instant — same moment for both of you
+    timeZone: deviceTZ,      // whose clock decides when a new day starts
     moodPack: {
       A: DEFAULT_NOTES_A.map(t => ({ text: t, img: null })),
       B: DEFAULT_NOTES_B.map(t => ({ text: t, img: null }))
@@ -420,66 +488,159 @@ function defaultSettings(){
   };
 }
 
+function emptySide(){
+  return { checkin:null, checkinTime:null, food:{lunch:null,dinner:null}, diary:"", mood:null };
+}
 function defaultDay(){
-  return {
-    A: { checkin:null, checkinTime:null, food:{lunch:null,dinner:null}, diary:"", mood:null },
-    B: { checkin:null, checkinTime:null, food:{lunch:null,dinner:null}, diary:"", mood:null }
-  };
+  return { A: emptySide(), B: emptySide() };
 }
 
-async function apiRequest(method, key, value){
+// Anything missing from a stored record gets filled in, so an old or
+// partial document can't crash the app.
+function normalizeSettings(v){
+  const d = defaultSettings();
+  if (!v || typeof v !== "object") return d;
+  const s = {
+    appTitle: typeof v.appTitle === "string" && v.appTitle.trim() ? v.appTitle : d.appTitle,
+    names: {
+      A: (v.names && typeof v.names.A === "string" && v.names.A) || d.names.A,
+      B: (v.names && typeof v.names.B === "string" && v.names.B) || d.names.B
+    },
+    meetDate: typeof v.meetDate === "string" ? v.meetDate : null,
+    timeZone: typeof v.timeZone === "string" && v.timeZone ? v.timeZone : d.timeZone,
+    moodPack: { A: [], B: [] },
+    initialized: !!v.initialized
+  };
+  ["A","B"].forEach(side => {
+    const stored = (v.moodPack && Array.isArray(v.moodPack[side])) ? v.moodPack[side] : [];
+    s.moodPack[side] = d.moodPack[side].map((def, i) => {
+      const e = stored[i];
+      return {
+        text: (e && typeof e.text === "string") ? e.text : def.text,
+        img: (e && typeof e.img === "string") ? e.img : null
+      };
+    });
+  });
+  return s;
+}
+
+function normalizeDay(v){
+  const d = defaultDay();
+  if (!v || typeof v !== "object") return d;
+  ["A","B"].forEach(side => {
+    const s = v[side];
+    if (!s || typeof s !== "object") return;
+    d[side] = {
+      checkin: typeof s.checkin === "string" ? s.checkin : null,
+      checkinTime: typeof s.checkinTime === "string" ? s.checkinTime : null,
+      food: {
+        lunch: (s.food && s.food.lunch) || null,
+        dinner: (s.food && s.food.dinner) || null
+      },
+      diary: typeof s.diary === "string" ? s.diary : "",
+      mood: typeof s.mood === "number" ? s.mood : null
+    };
+  });
+  return d;
+}
+
+/* ---------------- api ---------------- */
+async function apiRequest(method, path, body){
   const headers = { "Content-Type": "application/json" };
   const appKey = localStorage.getItem("appkey");
   if (appKey) headers["x-app-key"] = appKey;
-  let res;
-  if (method === "GET"){
-    res = await fetch("/api/kv?key=" + encodeURIComponent(key), { headers });
-  } else {
-    res = await fetch("/api/kv", { method: "POST", headers, body: JSON.stringify({ key, value }) });
-  }
-  if (res.status === 401){ const err = new Error("unauthorized"); err.code = 401; throw err; }
-  if (method === "GET" && res.status === 404) return null;
-  if (!res.ok){ const err = new Error("request failed"); err.code = res.status; throw err; }
-  const data = await res.json();
-  return data.value;
-}
-const apiGet = (key) => apiRequest("GET", key);
-const apiSet = (key, value) => apiRequest("POST", key, value);
 
-async function loadSettings(){
-  const v = await apiGet("settings"); // lets a 401 bubble up to init()
-  settings = v || defaultSettings();
-}
-async function saveSettings(){
+  let res;
   try{
-    await apiSet("settings", settings);
+    res = (method === "GET")
+      ? await fetch(path, { headers })
+      : await fetch(path, { method:"POST", headers, body: JSON.stringify(body) });
+  }catch(networkErr){
+    setOffline(true, "network unreachable");
+    const err = new Error("network"); err.code = 0; throw err;
+  }
+
+  if (res.status === 401){ const err = new Error("unauthorized"); err.code = 401; throw err; }
+  if (method === "GET" && res.status === 404){ setOffline(false); return null; }
+
+  if (!res.ok){
+    let detail = "";
+    try{ detail = (await res.json()).error || ""; }catch(e){}
+    setOffline(true, detail || ("HTTP "+res.status));
+    const err = new Error(detail || "request failed"); err.code = res.status; throw err;
+  }
+
+  setOffline(false);
+  return await res.json();
+}
+
+async function apiGet(key){
+  const data = await apiRequest("GET", "/api/kv?key="+encodeURIComponent(key));
+  if (data && typeof data.rev === "number") seenRev[key] = data.rev;
+  else if (data === null) seenRev[key] = 0;      // 404: record doesn't exist yet
+  return data ? data.value : null;
+}
+async function apiGetMany(keys){
+  const data = await apiRequest("GET", "/api/kv?keys="+encodeURIComponent(keys.join(",")));
+  return (data && data.values) || {};
+}
+async function apiGetRevs(keys){
+  const data = await apiRequest("GET", "/api/kv?meta="+encodeURIComponent(keys.join(",")));
+  return (data && data.revs) || {};
+}
+async function apiSet(key, value){
+  return apiRequest("POST", "/api/kv", { key, value });
+}
+async function apiPatch(key, patch){
+  return apiRequest("POST", "/api/kv", { key, patch });
+}
+
+/* ---------------- loading & saving ---------------- */
+async function loadSettings(){
+  const v = await apiGet("settings");   // a 401 bubbles up to init()
+  settings = normalizeSettings(v);
+}
+
+// Only writes the fields you actually changed, so saving on your phone
+// can't wipe what she saved on hers.
+async function saveSettingsPatch(patch){
+  try{
+    const res = await apiPatch("settings", patch);
+    if (res && typeof res.rev === "number") seenRev["settings"] = res.rev;
+    return true;
   }catch(e){
-    toast("couldn't save settings — try again");
+    toast(e.code === 401 ? "wrong passcode" : "couldn't save settings — check your connection");
+    return false;
   }
 }
+
 async function loadDay(ds){
   try{
-    const v = await apiGet(dayKey(ds));
-    return v || defaultDay();
+    return normalizeDay(await apiGet(dayKey(ds)));
   }catch(e){
     return defaultDay();
   }
 }
-async function saveDay(ds, obj){
+
+// Writes only your half of the day record.
+async function saveMySide(fields){
+  const patch = {};
+  Object.keys(fields).forEach(k => { patch[mySide + "." + k] = fields[k]; });
   try{
-    await apiSet(dayKey(ds), obj);
+    const res = await apiPatch(dayKey(currentDayStr), patch);
+    if (res && res.value) currentDay = normalizeDay(res.value);
+    if (res && typeof res.rev === "number") seenRev[dayKey(currentDayStr)] = res.rev;
+    return true;
   }catch(e){
-    toast("couldn't save — try again");
+    toast(e.code === 401 ? "wrong passcode" : "couldn't save — check your connection");
+    return false;
   }
 }
-function loadMySide(){
-  return localStorage.getItem("myside");
-}
-function saveMySide(side){
-  localStorage.setItem("myside", side);
-}
 
+function loadDeviceSide(){ return localStorage.getItem("myside"); }
+function storeDeviceSide(side){ localStorage.setItem("myside", side); }
 
+/* ---------------- images ---------------- */
 function resizeImageFile(file, maxDim, quality){
   return new Promise((resolve, reject)=>{
     const reader = new FileReader();
@@ -502,23 +663,29 @@ function resizeImageFile(file, maxDim, quality){
   });
 }
 
-function otherSide(s){ return s === "A" ? "B" : "A"; }
-
 /* ---------------- rendering ---------------- */
+function escapeHtml(s){
+  return String(s == null ? "" : s)
+    .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;").replace(/'/g,"&#39;");
+}
 
 function renderHeader(){
-  document.getElementById("appTitle").textContent = settings.appTitle || "our little corner";
+  $("appTitle").textContent = settings.appTitle || "our little corner";
 }
 
 function renderCountdown(){
-  const el = document.getElementById("countdownNums");
+  const el = $("countdownNums");
   if (!settings.meetDate){
-    el.innerHTML = '<div class="hint">set the date you meet in settings ⚙️</div>';
+    el.innerHTML = '<div class="hint">set the day you meet in settings ⚙️</div>';
     return;
   }
   const target = new Date(settings.meetDate).getTime();
-  const now = Date.now();
-  const diff = target - now;
+  if (isNaN(target)){
+    el.innerHTML = '<div class="hint">that meet-up date didn\'t look right — set it again in settings ⚙️</div>';
+    return;
+  }
+  const diff = target - Date.now();
   if (diff <= 0){
     el.innerHTML = '<div class="wobbly" style="font-size:22px;">you\'re together! 🎉</div>';
     return;
@@ -526,33 +693,28 @@ function renderCountdown(){
   const d = Math.floor(diff / 86400000);
   const h = Math.floor((diff % 86400000) / 3600000);
   const m = Math.floor((diff % 3600000) / 60000);
+  const s = Math.floor((diff % 60000) / 1000);
   el.innerHTML = `
     <div class="num-box"><div class="n">${d}</div><div class="l">days</div></div>
-    <div class="num-box"><div class="n">${h}</div><div class="l">hrs</div></div>
-    <div class="num-box"><div class="n">${m}</div><div class="l">min</div></div>
+    <div class="num-box"><div class="n">${pad(h)}</div><div class="l">hrs</div></div>
+    <div class="num-box"><div class="n">${pad(m)}</div><div class="l">min</div></div>
+    <div class="num-box"><div class="n">${pad(s)}</div><div class="l">sec</div></div>
   `;
 }
 
 function renderLockState(){
+  if (!mySide || !currentDay) return;
   const mine = currentDay[mySide];
-  const overlay = document.getElementById("lockOverlay");
-  const selfiesCard = document.getElementById("selfiesCard");
-  if (mine.checkin){
-    overlay.classList.add("hidden");
-    selfiesCard.style.display = "block";
-    renderTodaySelfies();
-  } else {
-    overlay.classList.remove("hidden");
-    selfiesCard.style.display = "none";
-  }
+  $("lockOverlay").classList.toggle("hidden", !!mine.checkin);
+  $("selfiesCard").style.display = mine.checkin ? "block" : "none";
+  if (mine.checkin) renderTodaySelfies();
   updateTabLocks();
 }
 
 function renderTodaySelfies(){
-  const wrap = document.getElementById("todaySelfies");
+  const wrap = $("todaySelfies");
   const names = settings.names;
-  const sides = ["A","B"];
-  wrap.innerHTML = sides.map(s => {
+  wrap.innerHTML = ["A","B"].map(s => {
     const d = currentDay[s];
     if (d.checkin){
       return `<div class="selfie-slot"><img class="pic" src="${d.checkin}"><div class="name">${escapeHtml(names[s])}</div></div>`;
@@ -562,7 +724,7 @@ function renderTodaySelfies(){
 }
 
 function updateTabLocks(){
-  const unlocked = !!currentDay[mySide].checkin;
+  const unlocked = !!(currentDay && mySide && currentDay[mySide].checkin);
   ["food","diary","mood"].forEach(tab => {
     const btn = document.querySelector(`nav.tabbar button[data-tab="${tab}"]`);
     btn.style.opacity = unlocked ? "" : "0.35";
@@ -572,84 +734,97 @@ function updateTabLocks(){
 
 function renderFood(){
   const mine = currentDay[mySide].food;
-  const lunchBtn = document.getElementById("lunchPhotoBtn");
-  const dinnerBtn = document.getElementById("dinnerPhotoBtn");
-  lunchBtn.innerHTML = mine.lunch && mine.lunch.img ? `<img src="${mine.lunch.img}">` : "＋";
-  dinnerBtn.innerHTML = mine.dinner && mine.dinner.img ? `<img src="${mine.dinner.img}">` : "＋";
-  document.getElementById("lunchCaption").value = (mine.lunch && mine.lunch.caption) || "";
-  document.getElementById("dinnerCaption").value = (mine.dinner && mine.dinner.caption) || "";
+  $("lunchPhotoBtn").innerHTML  = mine.lunch  && mine.lunch.img  ? `<img src="${mine.lunch.img}">`  : "＋";
+  $("dinnerPhotoBtn").innerHTML = mine.dinner && mine.dinner.img ? `<img src="${mine.dinner.img}">` : "＋";
+  ["lunch","dinner"].forEach(meal => {
+    const input = $(meal+"Caption");
+    const val = (mine[meal] && mine[meal].caption) || "";
+    if (document.activeElement !== input) input.value = val;   // don't fight the keyboard
+  });
 
-  const gallery = document.getElementById("foodGallery");
   const names = settings.names;
-  let cards = [];
+  const cards = [];
   ["A","B"].forEach(s => {
     ["lunch","dinner"].forEach(meal => {
       const item = currentDay[s].food[meal];
       if (item && item.img){
-        const capText = item.caption ? escapeHtml(item.caption) : (meal==="lunch"?"lunch":"dinner");
+        const capText = item.caption ? escapeHtml(item.caption) : meal;
         cards.push(`<div class="polaroid"><img src="${item.img}">
           <div class="cap">${capText}</div>
           <div class="tag">${escapeHtml(names[s])} · ${meal}</div></div>`);
       }
     });
   });
-  gallery.innerHTML = cards.length ? cards.join("") : '<div class="empty">nothing on the table yet today 🍽️</div>';
+  $("foodGallery").innerHTML = cards.length ? cards.join("") : '<div class="empty">nothing on the table yet today 🍽️</div>';
 }
 
 function renderDiaryToday(){
-  document.getElementById("diaryText").value = currentDay[mySide].diary || "";
+  const el = $("diaryText");
+  if (document.activeElement !== el) el.value = currentDay[mySide].diary || "";
 }
 
 async function renderDiaryHistory(){
-  const box = document.getElementById("diaryHistory");
-  box.innerHTML = '<div class="hint">loading…</div>';
+  const box = $("diaryHistory");
+  if (!box.dataset.loaded) box.innerHTML = '<div class="hint">loading…</div>';
   const names = settings.names;
-  const entries = [];
+  const tz = settings.timeZone || deviceTZ;
+
+  const keys = [];
   const base = new Date();
   for (let i = 0; i < 7; i++){
-    const d = new Date(base);
-    d.setDate(d.getDate() - i);
-    const ds = d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
-    let dayObj;
-    try{
-      dayObj = await apiGet(dayKey(ds));
-    }catch(e){ dayObj = null; }
-    if (!dayObj) continue;
-    ["A","B"].forEach(s => {
-      if (dayObj[s].diary && dayObj[s].diary.trim()){
-        entries.push({ ds, side: s, text: dayObj[s].diary });
-      }
-    });
+    const d = new Date(base.getTime() - i*86400000);
+    keys.push(dayKey(dayString(d, tz)));
   }
-  if (!entries.length){
-    box.innerHTML = '<div class="empty">no pages yet this week</div>';
-    return;
-  }
-  box.innerHTML = entries.map(e =>
-    `<div class="diary-entry"><div class="meta">${e.ds} · ${names[e.side]}</div><p>${escapeHtml(e.text)}</p></div>`
-  ).join("");
-}
 
-function escapeHtml(s){
-  return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+  let map = {};
+  try{ map = await apiGetMany(keys); }
+  catch(e){ box.innerHTML = '<div class="empty">couldn\'t load past pages</div>'; return; }
+
+  const entries = [];
+  keys.forEach(k => {
+    const dayObj = map[k];
+    if (!dayObj) return;
+    ["A","B"].forEach(s => {
+      const text = dayObj[s] && dayObj[s].diary;
+      if (text && text.trim()) entries.push({ ds: k.slice(4), side: s, text });
+    });
+  });
+
+  box.dataset.loaded = "1";
+  box.innerHTML = entries.length
+    ? entries.map(e => `<div class="diary-entry"><div class="meta">${e.ds} · ${escapeHtml(names[e.side])}</div><p>${escapeHtml(e.text)}</p></div>`).join("")
+    : '<div class="empty">no pages yet this week</div>';
 }
 
 function renderMood(){
-  const grid = document.getElementById("moodGrid");
-  grid.innerHTML = [1,2,3,4,5].map(v =>
+  $("moodGrid").innerHTML = [1,2,3,4,5].map(v =>
     `<div class="mood-stamp" data-mood="${v}" style="background:${MOOD_COLORS[v-1]}">${v}</div>`
   ).join("");
-  const row = document.getElementById("moodTodayRow");
   const names = settings.names;
-  row.innerHTML = ["A","B"].map(s => {
+  $("moodTodayRow").innerHTML = ["A","B"].map(s => {
     const m = currentDay[s].mood;
     return `<div class="who">${escapeHtml(names[s])}<div class="dot" style="background:${m?MOOD_COLORS[m-1]:'#ccc'}">${m||"–"}</div></div>`;
   }).join("");
 }
 
+/* ---------------- settings: mood note editor ---------------- */
+function editorSide(){
+  return $("setSideA").classList.contains("selected") ? "A" : "B";
+}
+// Pull whatever is typed in the editor back into `settings` before we
+// re-render it, otherwise switching sides throws the edits away.
+function captureMoodEdits(){
+  const side = editorSide();
+  document.querySelectorAll("#moodPackEditor textarea").forEach(t => {
+    const i = parseInt(t.dataset.idx, 10);
+    if (settings.moodPack[side][i]) settings.moodPack[side][i].text = t.value;
+  });
+  return side;
+}
+
 function renderMoodPackEditor(){
-  const box = document.getElementById("moodPackEditor");
-  const side = document.getElementById("setSideA").classList.contains("selected") ? "A" : "B";
+  const box = $("moodPackEditor");
+  const side = editorSide();
   const pack = settings.moodPack[side];
   box.innerHTML = pack.map((entry, i) => `
     <div class="mood-edit-row">
@@ -659,17 +834,18 @@ function renderMoodPackEditor(){
     </div>
   `).join("");
   pack.forEach((entry, i) => {
-    document.getElementById("moodImgBtn"+i).addEventListener("click", () => pickMoodImage(side, i));
+    $("moodImgBtn"+i).addEventListener("click", () => pickMoodImage(side, i));
   });
 }
 
-async function pickMoodImage(side, idx){
+function pickMoodImage(side, idx){
   const input = document.createElement("input");
   input.type = "file"; input.accept = "image/*";
   input.onchange = async () => {
     if (!input.files[0]) return;
     try{
-      const b64 = await resizeImageFile(input.files[0], 400, 0.75);
+      const b64 = await resizeImageFile(input.files[0], 320, 0.7);
+      captureMoodEdits();
       settings.moodPack[side][idx].img = b64;
       renderMoodPackEditor();
     }catch(e){ toast("couldn't load that image"); }
@@ -677,11 +853,153 @@ async function pickMoodImage(side, idx){
   input.click();
 }
 
+/* ---------------- timezone picker ---------------- */
+function fillTimeZones(selected){
+  const sel = $("setTimeZone");
+  let zones;
+  try{ zones = Intl.supportedValuesOf("timeZone"); }catch(e){ zones = null; }
+  if (!zones || !zones.length){
+    zones = ["UTC","America/Los_Angeles","America/Denver","America/Chicago","America/New_York",
+             "America/Sao_Paulo","Europe/London","Europe/Paris","Europe/Berlin","Europe/Moscow",
+             "Asia/Dubai","Asia/Karachi","Asia/Kolkata","Asia/Bangkok","Asia/Shanghai",
+             "Asia/Hong_Kong","Asia/Singapore","Asia/Manila","Asia/Tokyo","Asia/Seoul",
+             "Australia/Sydney","Pacific/Auckland"];
+  }
+  if (zones.indexOf(deviceTZ) === -1) zones = [deviceTZ].concat(zones);
+  const want = selected || deviceTZ;
+  if (zones.indexOf(want) === -1) zones = [want].concat(zones);
+  sel.innerHTML = zones.map(z => `<option value="${escapeHtml(z)}">${escapeHtml(z)}</option>`).join("");
+  sel.value = want;
+}
+
+/* ---------------- settings modal ---------------- */
+async function openSettingsModal(){
+  // grab the newest shared settings first so you're not editing a stale copy
+  try{
+    const v = await apiGet("settings");
+    if (v) settings = normalizeSettings(v);
+  }catch(e){ /* keep what we have */ }
+
+  $("setAppTitle").value = settings.appTitle;
+  $("setNameA").value = settings.names.A;
+  $("setNameB").value = settings.names.B;
+
+  if (settings.meetDate){
+    const d = new Date(settings.meetDate);
+    if (!isNaN(d.getTime())){
+      // local components -- toISOString() here shifted the date by a day
+      $("setMeetDate").value = d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate());
+      $("setMeetTime").value = pad(d.getHours())+":"+pad(d.getMinutes());
+    }
+  } else {
+    $("setMeetDate").value = "";
+    $("setMeetTime").value = "";
+  }
+
+  fillTimeZones(settings.timeZone);
+
+  $("setSideA").textContent = settings.names.A;
+  $("setSideB").textContent = settings.names.B;
+  $("setSideA").classList.toggle("selected", mySide !== "B");
+  $("setSideB").classList.toggle("selected", mySide === "B");
+
+  renderMoodPackEditor();
+  renderHeader();
+  $("settingsModal").classList.remove("hidden");
+}
+
+$("openSettings").addEventListener("click", openSettingsModal);
+$("closeSettings").addEventListener("click", () => $("settingsModal").classList.add("hidden"));
+
+$("setSideA").addEventListener("click", () => {
+  captureMoodEdits();
+  $("setSideA").classList.add("selected");
+  $("setSideB").classList.remove("selected");
+  renderMoodPackEditor();
+});
+$("setSideB").addEventListener("click", () => {
+  captureMoodEdits();
+  $("setSideB").classList.add("selected");
+  $("setSideA").classList.remove("selected");
+  renderMoodPackEditor();
+});
+
+$("saveSettingsBtn").addEventListener("click", async () => {
+  const btn = $("saveSettingsBtn");
+  btn.disabled = true;
+  const originalLabel = btn.textContent;
+  btn.textContent = "saving…";
+
+  const chosenSide = captureMoodEdits();
+
+  settings.appTitle = $("setAppTitle").value.trim() || "our little corner";
+  settings.names.A  = $("setNameA").value.trim() || "A";
+  settings.names.B  = $("setNameB").value.trim() || "B";
+  settings.timeZone = $("setTimeZone").value || deviceTZ;
+
+  const dateVal = $("setMeetDate").value;
+  const timeVal = $("setMeetTime").value || "00:00";
+  if (dateVal){
+    const d = new Date(dateVal + "T" + timeVal + ":00");
+    settings.meetDate = isNaN(d.getTime()) ? null : d.toISOString();
+  } else {
+    settings.meetDate = null;
+  }
+  settings.initialized = true;
+
+  const sideChanged = chosenSide !== mySide;
+  mySide = chosenSide;
+  storeDeviceSide(mySide);
+
+  const ok = await saveSettingsPatch({
+    appTitle: settings.appTitle,
+    "names.A": settings.names.A,
+    "names.B": settings.names.B,
+    meetDate: settings.meetDate,
+    timeZone: settings.timeZone,
+    ["moodPack."+chosenSide]: settings.moodPack[chosenSide],
+    initialized: true
+  });
+
+  btn.disabled = false;
+  btn.textContent = originalLabel;
+
+  renderHeader();
+  renderCountdown();
+
+  if (sideChanged || currentDayStr !== todayStr()){
+    currentDayStr = todayStr();
+    currentDay = await loadDay(currentDayStr);
+  }
+  renderLockState();
+
+  if (ok){
+    $("settingsModal").classList.add("hidden");
+    toast("settings saved ✓");
+  }
+  // if it failed, the modal stays open and the banner explains why
+});
+
+/* ---------------- who's checking in ---------------- */
+$("pickA").addEventListener("click", () => chooseSide("A"));
+$("pickB").addEventListener("click", () => chooseSide("B"));
+async function chooseSide(side){
+  mySide = side;
+  storeDeviceSide(side);
+  $("whoModal").classList.add("hidden");
+  currentDayStr = todayStr();
+  currentDay = await loadDay(currentDayStr);
+  renderLockState();
+  if (!settings.initialized) openSettingsModal();
+}
+
 /* ---------------- tabs ---------------- */
+let activeTab = "home";
 function switchTab(tab){
+  activeTab = tab;
   document.querySelectorAll(".tab-panel").forEach(p => p.classList.remove("active"));
   document.querySelectorAll("nav.tabbar button").forEach(b => b.classList.remove("active"));
-  document.getElementById("panel-"+tab).classList.add("active");
+  $("panel-"+tab).classList.add("active");
   document.querySelector(`nav.tabbar button[data-tab="${tab}"]`).classList.add("active");
   if (tab === "food") renderFood();
   if (tab === "diary"){ renderDiaryToday(); renderDiaryHistory(); }
@@ -700,36 +1018,32 @@ document.querySelectorAll("nav.tabbar button").forEach(btn => {
 });
 
 /* ---------------- check-in ---------------- */
-document.getElementById("shutterBtn").addEventListener("click", () => {
+$("shutterBtn").addEventListener("click", () => {
   const input = document.createElement("input");
   input.type = "file"; input.accept = "image/*"; input.capture = "user";
   input.onchange = async () => {
     if (!input.files[0]) return;
     try{
-      const b64 = await resizeImageFile(input.files[0], 500, 0.75);
-      currentDay[mySide].checkin = b64;
-      currentDay[mySide].checkinTime = new Date().toISOString();
-      await saveDay(todayStr(), currentDay);
-      renderLockState();
-      toast("today unlocked ✨");
+      const b64 = await resizeImageFile(input.files[0], 460, 0.7);
+      const ok = await saveMySide({ checkin: b64, checkinTime: new Date().toISOString() });
+      if (ok){ renderLockState(); toast("today unlocked ✨"); }
     }catch(e){ toast("couldn't load that photo"); }
   };
   input.click();
 });
 
-/* ---------------- food handlers ---------------- */
+/* ---------------- food ---------------- */
 function wireMealButton(id, meal){
-  document.getElementById(id).addEventListener("click", () => {
+  $(id).addEventListener("click", () => {
     const input = document.createElement("input");
     input.type = "file"; input.accept = "image/*";
     input.onchange = async () => {
       if (!input.files[0]) return;
       try{
-        const b64 = await resizeImageFile(input.files[0], 500, 0.7);
-        if (!currentDay[mySide].food[meal]) currentDay[mySide].food[meal] = {};
-        currentDay[mySide].food[meal].img = b64;
-        await saveDay(todayStr(), currentDay);
-        renderFood();
+        const b64 = await resizeImageFile(input.files[0], 460, 0.65);
+        const existing = currentDay[mySide].food[meal] || {};
+        const ok = await saveMySide({ ["food."+meal]: { img: b64, caption: existing.caption || "" } });
+        if (ok){ renderFood(); toast("added to the table 🍽️"); }
       }catch(e){ toast("couldn't load that photo"); }
     };
     input.click();
@@ -739,39 +1053,40 @@ wireMealButton("lunchPhotoBtn","lunch");
 wireMealButton("dinnerPhotoBtn","dinner");
 
 ["lunch","dinner"].forEach(meal => {
-  document.getElementById(meal+"Caption").addEventListener("change", async (e) => {
-    if (!currentDay[mySide].food[meal]) currentDay[mySide].food[meal] = {};
-    currentDay[mySide].food[meal].caption = e.target.value;
-    await saveDay(todayStr(), currentDay);
+  $(meal+"Caption").addEventListener("change", async (e) => {
+    const existing = currentDay[mySide].food[meal] || {};
+    const ok = await saveMySide({ ["food."+meal]: { img: existing.img || null, caption: e.target.value } });
+    if (ok) renderFood();
   });
 });
 
-/* ---------------- diary handlers ---------------- */
-document.getElementById("saveDiaryBtn").addEventListener("click", async () => {
-  currentDay[mySide].diary = document.getElementById("diaryText").value;
-  await saveDay(todayStr(), currentDay);
-  toast("saved to today's page 📔");
-  renderDiaryHistory();
+/* ---------------- diary ---------------- */
+$("saveDiaryBtn").addEventListener("click", async () => {
+  const btn = $("saveDiaryBtn");
+  btn.disabled = true;
+  const ok = await saveMySide({ diary: $("diaryText").value });
+  btn.disabled = false;
+  if (ok){ toast("saved to today's page 📔"); renderDiaryHistory(); }
 });
 
-/* ---------------- mood handlers ---------------- */
-document.getElementById("moodGrid").addEventListener("click", async (e) => {
+/* ---------------- mood ---------------- */
+$("moodGrid").addEventListener("click", async (e) => {
   const stamp = e.target.closest(".mood-stamp");
   if (!stamp) return;
   const val = parseInt(stamp.dataset.mood, 10);
-  currentDay[mySide].mood = val;
-  await saveDay(todayStr(), currentDay);
+  const ok = await saveMySide({ mood: val });
+  if (!ok) return;
   renderMood();
+
   const other = otherSide(mySide);
-  const entry = settings.moodPack[other][val-1];
-  document.getElementById("moodPopupAvatar").src = entry.img || fallbackAvatar(val);
-  document.getElementById("moodPopupMsg").textContent = entry.text;
-  document.getElementById("moodPopupFrom").textContent = "— " + settings.names[other];
-  document.getElementById("moodPopupModal").classList.remove("hidden");
+  const pack = settings.moodPack[other] || [];
+  const entry = pack[val-1] || { text: "thinking of you ♡", img: null };
+  $("moodPopupAvatar").src = entry.img || fallbackAvatar(val);
+  $("moodPopupMsg").textContent = entry.text;
+  $("moodPopupFrom").textContent = "— " + settings.names[other];
+  $("moodPopupModal").classList.remove("hidden");
 });
-document.getElementById("closeMoodPopup").addEventListener("click", () => {
-  document.getElementById("moodPopupModal").classList.add("hidden");
-});
+$("closeMoodPopup").addEventListener("click", () => $("moodPopupModal").classList.add("hidden"));
 
 function fallbackAvatar(val){
   const color = MOOD_COLORS[val-1];
@@ -784,126 +1099,152 @@ function fallbackAvatar(val){
   return "data:image/svg+xml;base64," + btoa(svg);
 }
 
-/* ---------------- settings modal ---------------- */
-function openSettingsModal(){
-  document.getElementById("setAppTitle").value = settings.appTitle;
-  document.getElementById("setNameA").value = settings.names.A;
-  document.getElementById("setNameB").value = settings.names.B;
-  if (settings.meetDate){
-    const d = new Date(settings.meetDate);
-    document.getElementById("setMeetDate").value = d.toISOString().slice(0,10);
-    document.getElementById("setMeetTime").value = d.toTimeString().slice(0,5);
-  }
-  document.getElementById("setSideA").textContent = settings.names.A;
-  document.getElementById("setSideB").textContent = settings.names.B;
-  document.getElementById("setSideA").classList.toggle("selected", mySide === "A");
-  document.getElementById("setSideB").classList.toggle("selected", mySide === "B");
-  renderMoodPackEditor();
-  document.getElementById("settingsModal").classList.remove("hidden");
+/* ---------------- passcode gate ---------------- */
+function showPasscodeGate(showError){
+  $("passError").classList.toggle("hidden", !showError);
+  $("passModal").classList.remove("hidden");
+  $("passInput").focus();
 }
-document.getElementById("openSettings").addEventListener("click", openSettingsModal);
-document.getElementById("closeSettings").addEventListener("click", () => {
-  document.getElementById("settingsModal").classList.add("hidden");
-});
-document.getElementById("setSideA").addEventListener("click", () => {
-  document.getElementById("setSideA").classList.add("selected");
-  document.getElementById("setSideB").classList.remove("selected");
-  renderMoodPackEditor();
-});
-document.getElementById("setSideB").addEventListener("click", () => {
-  document.getElementById("setSideB").classList.add("selected");
-  document.getElementById("setSideA").classList.remove("selected");
-  renderMoodPackEditor();
-});
+$("passSubmit").addEventListener("click", submitPasscode);
+$("passInput").addEventListener("keydown", (e) => { if (e.key === "Enter") submitPasscode(); });
+function submitPasscode(){
+  const val = $("passInput").value.trim();
+  if (!val) return;
+  localStorage.setItem("appkey", val);
+  $("passModal").classList.add("hidden");
+  init();
+}
 
-document.getElementById("saveSettingsBtn").addEventListener("click", async () => {
-  settings.appTitle = document.getElementById("setAppTitle").value.trim() || "our little corner";
-  settings.names.A = document.getElementById("setNameA").value.trim() || "A";
-  settings.names.B = document.getElementById("setNameB").value.trim() || "B";
-  const dateVal = document.getElementById("setMeetDate").value;
-  const timeVal = document.getElementById("setMeetTime").value || "00:00";
-  settings.meetDate = dateVal ? new Date(dateVal+"T"+timeVal+":00").toISOString() : null;
+/* ---------------- live sync ----------------
+   Without this you only ever saw the snapshot from when the page loaded —
+   her check-in could land a second later and never appear.
 
-  const chosenSide = document.getElementById("setSideA").classList.contains("selected") ? "A" : "B";
-  document.querySelectorAll("#moodPackEditor textarea").forEach(t => {
-    settings.moodPack[chosenSide][parseInt(t.dataset.idx,10)].text = t.value;
-  });
+   Every few seconds we ask the server for one number per record. If the
+   number hasn't moved, nothing has changed and we stop there (a few dozen
+   bytes). Only when it moves do we download the actual record, photos and
+   all. That's what makes a 3-second cadence affordable on a phone data
+   plan and on Vercel's free tier. */
 
-  const sideChanged = chosenSide !== mySide;
-  mySide = chosenSide;
-  await saveMySide(mySide);
-  settings.initialized = true;
-  await saveSettings();
-
-  renderHeader();
+function repaint(){
+  if ($("settingsModal").classList.contains("hidden")) renderHeader();
   renderCountdown();
   renderLockState();
-  document.getElementById("settingsModal").classList.add("hidden");
-  toast("settings saved");
-  if (sideChanged){
-    currentDay = await loadDay(todayStr());
-    renderLockState();
-  }
-});
-
-document.getElementById("pickA").addEventListener("click", () => choosSide("A"));
-document.getElementById("pickB").addEventListener("click", () => choosSide("B"));
-async function choosSide(side){
-  mySide = side;
-  saveMySide(side);
-  document.getElementById("whoModal").classList.add("hidden");
-  currentDay = await loadDay(todayStr());
-  renderLockState();
-  if (!settings.initialized){
-    openSettingsModal();
-  }
+  if (activeTab === "food") renderFood();
+  if (activeTab === "mood") renderMood();
+  if (activeTab === "diary"){ renderDiaryToday(); renderDiaryHistory(); }
 }
 
-/* ---------------- passcode gate ---------------- */
-let countdownTimerStarted = false;
-function showPasscodeGate(showError){
-  document.getElementById("passError").classList.toggle("hidden", !showError);
-  document.getElementById("passModal").classList.remove("hidden");
+async function pullDay(ds){
+  currentDayStr = ds;
+  currentDay = await loadDay(ds);
 }
-document.getElementById("passSubmit").addEventListener("click", () => {
-  const val = document.getElementById("passInput").value.trim();
-  localStorage.setItem("appkey", val);
-  document.getElementById("passModal").classList.add("hidden");
-  init();
+
+async function syncOnce(force){
+  if (document.hidden) return;
+
+  const ds = todayStr();
+  if (ds !== currentDayStr){          // midnight rolled over where we agreed it does
+    await pullDay(ds);
+    repaint();
+    return;
+  }
+
+  let revs;
+  try{
+    revs = await apiGetRevs(["settings", dayKey(ds)]);
+  }catch(e){
+    return;                          // the banner already explains it
+  }
+
+  const dk = dayKey(ds);
+  let changed = false;
+
+  // A key missing from the response just means that record doesn't exist
+  // yet, which is revision 0.
+  const settingsRev = revs["settings"] === undefined ? 0 : revs["settings"];
+  const dayRev = revs[dk] === undefined ? 0 : revs[dk];
+
+  if (force || settingsRev !== seenRev["settings"]){
+    try{
+      const v = await apiGet("settings");
+      if (v) settings = normalizeSettings(v);
+      changed = true;
+    }catch(e){}
+  }
+
+  if (force || dayRev !== seenRev[dk]){
+    try{
+      currentDay = normalizeDay(await apiGet(dk));
+      changed = true;
+    }catch(e){}
+  }
+
+  if (changed) repaint();
+}
+
+function scheduleSync(){
+  clearTimeout(pollTimer);
+  const idle = Date.now() - lastInteraction > IDLE_AFTER_MS;
+  const wait = document.hidden ? CHECK_IDLE_MS : (idle ? CHECK_IDLE_MS : CHECK_ACTIVE_MS);
+  pollTimer = setTimeout(async () => {
+    await syncOnce(false);
+    scheduleSync();
+  }, wait);
+}
+
+function noteInteraction(){
+  const wasIdle = Date.now() - lastInteraction > IDLE_AFTER_MS;
+  lastInteraction = Date.now();
+  if (wasIdle) scheduleSync();       // drop straight back to the fast cadence
+}
+["pointerdown","keydown","touchstart"].forEach(ev =>
+  document.addEventListener(ev, noteInteraction, { passive: true })
+);
+
+// Coming back to the app should feel instant, not "wait up to 3 seconds".
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) return;
+  lastInteraction = Date.now();
+  syncOnce(false).then(scheduleSync);
 });
+window.addEventListener("online", () => { syncOnce(true).then(scheduleSync); });
 
 /* ---------------- init ---------------- */
+let started = false;
 async function init(){
   try{
     await loadSettings();
   }catch(e){
     if (e && e.code === 401){
-      showPasscodeGate(true);
+      showPasscodeGate(!!localStorage.getItem("appkey"));
       return;
     }
-    settings = defaultSettings();
+    settings = defaultSettings();   // API is down; banner is already showing
   }
+
   renderHeader();
   renderCountdown();
-  if (!countdownTimerStarted){
-    setInterval(renderCountdown, 1000);
-    countdownTimerStarted = true;
-  }
 
-  mySide = loadMySide();
-  currentDay = await loadDay(todayStr());
+  mySide = loadDeviceSide();
+  currentDayStr = todayStr();
+  currentDay = await loadDay(currentDayStr);
+
+  if (!started){
+    started = true;
+    setInterval(renderCountdown, 1000);
+    scheduleSync();
+  }
 
   if (!mySide){
-    document.getElementById("pickA").textContent = settings.names.A;
-    document.getElementById("pickB").textContent = settings.names.B;
-    document.getElementById("whoModal").classList.remove("hidden");
+    $("pickA").textContent = settings.names.A;
+    $("pickB").textContent = settings.names.B;
+    $("whoModal").classList.remove("hidden");
   } else {
     renderLockState();
-    if (!settings.initialized){
-      openSettingsModal();
-    }
+    if (!settings.initialized) openSettingsModal();
   }
 }
+
 init();
 
 })();
