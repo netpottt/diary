@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+<meta name="robots" content="noindex, nofollow, noarchive, noimageindex">
+<meta name="referrer" content="no-referrer">
 <title>our little corner</title>
 <style>
   /* Fonts are served from this app, not Google Fonts, which is unreachable
@@ -157,6 +159,7 @@
   .selfie-slot .waiting{ width:78px;height:78px;border-radius:50%; border:3px dashed var(--espresso); display:flex;
     align-items:center;justify-content:center; font-size:22px; background:var(--cream-deep);}
   .selfie-slot .name{ font-size:12px; font-weight:800; margin-top:4px; color:var(--matcha-deep); }
+  .selfie-slot .at{ font-family:'Caveat',cursive; font-size:13px; line-height:1; margin-top:1px; opacity:0.7; }
 
   /* ---------- tabs bottom nav ---------- */
   nav.tabbar{
@@ -361,6 +364,12 @@
     <select id="setTimeZone"></select>
     <div class="hint">both of you must pick the same zone, or you'll each be writing to a different "today".</div>
 
+    <label class="field-label" id="zoneALabel">where A is</label>
+    <select id="setZoneA"></select>
+    <label class="field-label" id="zoneBLabel">where B is</label>
+    <select id="setZoneB"></select>
+    <div class="hint">times under photos show the poster's own clock, so you see her morning and she sees yours.</div>
+
     <label class="field-label">i am currently</label>
     <div class="side-pick">
       <button class="btn small" id="setSideA">A</button>
@@ -480,6 +489,7 @@ function defaultSettings(){
     names: { A: "Winnie", B: "Topten" },
     meetDate: null,          // ISO instant — same moment for both of you
     timeZone: deviceTZ,      // whose clock decides when a new day starts
+    zones: { A: null, B: null },   // where each of you is; filled in per phone
     moodPack: {
       A: DEFAULT_NOTES_A.map(t => ({ text: t, img: null })),
       B: DEFAULT_NOTES_B.map(t => ({ text: t, img: null }))
@@ -508,6 +518,10 @@ function normalizeSettings(v){
     },
     meetDate: typeof v.meetDate === "string" ? v.meetDate : null,
     timeZone: typeof v.timeZone === "string" && v.timeZone ? v.timeZone : d.timeZone,
+    zones: {
+      A: (v.zones && typeof v.zones.A === "string" && v.zones.A) || null,
+      B: (v.zones && typeof v.zones.B === "string" && v.zones.B) || null
+    },
     moodPack: { A: [], B: [] },
     initialized: !!v.initialized
   };
@@ -711,13 +725,34 @@ function renderLockState(){
   updateTabLocks();
 }
 
+// Shows a stored moment in the poster's OWN time zone, so her 8:12am in
+// Bangkok reads as 8:12am to both of you — you're seeing her morning, not
+// yours. Falls back to the shared zone if we don't know where they are.
+function zoneFor(side){
+  const z = settings && settings.zones && settings.zones[side];
+  return z || (settings && settings.timeZone) || deviceTZ;
+}
+function clockTime(iso, side){
+  if (!iso) return "";
+  const d = new Date(iso);
+  if (isNaN(d.getTime())) return "";
+  try{
+    return new Intl.DateTimeFormat("en-US", {
+      timeZone: zoneFor(side),
+      hour: "numeric", minute: "2-digit"
+    }).format(d).toLowerCase();
+  }catch(e){ return ""; }
+}
+
 function renderTodaySelfies(){
   const wrap = $("todaySelfies");
   const names = settings.names;
   wrap.innerHTML = ["A","B"].map(s => {
     const d = currentDay[s];
     if (d.checkin){
-      return `<div class="selfie-slot"><img class="pic" src="${d.checkin}"><div class="name">${escapeHtml(names[s])}</div></div>`;
+      const at = clockTime(d.checkinTime, s);
+      return `<div class="selfie-slot"><img class="pic" src="${d.checkin}"><div class="name">${escapeHtml(names[s])}</div>` +
+             (at ? `<div class="at">${at}</div>` : "") + `</div>`;
     }
     return `<div class="selfie-slot"><div class="waiting">⏳</div><div class="name">${escapeHtml(names[s])}</div></div>`;
   }).join("");
@@ -749,9 +784,10 @@ function renderFood(){
       const item = currentDay[s].food[meal];
       if (item && item.img){
         const capText = item.caption ? escapeHtml(item.caption) : meal;
+        const at = clockTime(item.time, s);
         cards.push(`<div class="polaroid"><img src="${item.img}">
           <div class="cap">${capText}</div>
-          <div class="tag">${escapeHtml(names[s])} · ${meal}</div></div>`);
+          <div class="tag">${escapeHtml(names[s])} · ${at || meal}</div></div>`);
       }
     });
   });
@@ -854,8 +890,8 @@ function pickMoodImage(side, idx){
 }
 
 /* ---------------- timezone picker ---------------- */
-function fillTimeZones(selected){
-  const sel = $("setTimeZone");
+function fillTimeZones(id, selected){
+  const sel = $(id);
   let zones;
   try{ zones = Intl.supportedValuesOf("timeZone"); }catch(e){ zones = null; }
   if (!zones || !zones.length){
@@ -896,7 +932,13 @@ async function openSettingsModal(){
     $("setMeetTime").value = "";
   }
 
-  fillTimeZones(settings.timeZone);
+  fillTimeZones("setTimeZone", settings.timeZone);
+  const fallbackFor = (side) =>
+    settings.zones[side] || (side === mySide ? deviceTZ : settings.timeZone || deviceTZ);
+  fillTimeZones("setZoneA", fallbackFor("A"));
+  fillTimeZones("setZoneB", fallbackFor("B"));
+  $("zoneALabel").textContent = settings.names.A + " is in";
+  $("zoneBLabel").textContent = settings.names.B + " is in";
 
   $("setSideA").textContent = settings.names.A;
   $("setSideB").textContent = settings.names.B;
@@ -936,6 +978,8 @@ $("saveSettingsBtn").addEventListener("click", async () => {
   settings.names.A  = $("setNameA").value.trim() || "A";
   settings.names.B  = $("setNameB").value.trim() || "B";
   settings.timeZone = $("setTimeZone").value || deviceTZ;
+  settings.zones.A = $("setZoneA").value || deviceTZ;
+  settings.zones.B = $("setZoneB").value || deviceTZ;
 
   const dateVal = $("setMeetDate").value;
   const timeVal = $("setMeetTime").value || "00:00";
@@ -957,6 +1001,8 @@ $("saveSettingsBtn").addEventListener("click", async () => {
     "names.B": settings.names.B,
     meetDate: settings.meetDate,
     timeZone: settings.timeZone,
+    "zones.A": settings.zones.A,
+    "zones.B": settings.zones.B,
     ["moodPack."+chosenSide]: settings.moodPack[chosenSide],
     initialized: true
   });
@@ -986,6 +1032,12 @@ $("pickB").addEventListener("click", () => chooseSide("B"));
 async function chooseSide(side){
   mySide = side;
   storeDeviceSide(side);
+  // Detect this phone's zone the first time, so times are correct even if
+  // nobody ever opens the settings screen.
+  if (!settings.zones[side]){
+    settings.zones[side] = deviceTZ;
+    saveSettingsPatch({ ["zones."+side]: deviceTZ });
+  }
   $("whoModal").classList.add("hidden");
   currentDayStr = todayStr();
   currentDay = await loadDay(currentDayStr);
@@ -1042,7 +1094,11 @@ function wireMealButton(id, meal){
       try{
         const b64 = await resizeImageFile(input.files[0], 460, 0.65);
         const existing = currentDay[mySide].food[meal] || {};
-        const ok = await saveMySide({ ["food."+meal]: { img: b64, caption: existing.caption || "" } });
+        const ok = await saveMySide({ ["food."+meal]: {
+          img: b64,
+          caption: existing.caption || "",
+          time: new Date().toISOString()      // so exports can be sorted by hour
+        } });
         if (ok){ renderFood(); toast("added to the table 🍽️"); }
       }catch(e){ toast("couldn't load that photo"); }
     };
@@ -1055,7 +1111,11 @@ wireMealButton("dinnerPhotoBtn","dinner");
 ["lunch","dinner"].forEach(meal => {
   $(meal+"Caption").addEventListener("change", async (e) => {
     const existing = currentDay[mySide].food[meal] || {};
-    const ok = await saveMySide({ ["food."+meal]: { img: existing.img || null, caption: e.target.value } });
+    const ok = await saveMySide({ ["food."+meal]: {
+      img: existing.img || null,
+      caption: e.target.value,
+      time: existing.time || null
+    } });
     if (ok) renderFood();
   });
 });
