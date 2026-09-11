@@ -68,6 +68,7 @@
   }
   .brand-row{ display:flex; align-items:center; justify-content:space-between; }
   .brand{ font-size:26px; font-weight:700; color:var(--espresso); letter-spacing:0.5px; }
+  #appTitle{ -webkit-user-select:none; user-select:none; -webkit-tap-highlight-color:transparent; touch-action:manipulation; }
   .gear-btn{
     width:38px;height:38px;border-radius:50%;border:2px solid var(--espresso);
     background:var(--white); font-size:17px; cursor:pointer; box-shadow:var(--shadow);
@@ -222,6 +223,88 @@
     background:#C0392B; color:var(--white); font-size:12.5px; font-weight:800; text-align:center;
     padding:8px 14px; border-bottom:3px solid var(--espresso); line-height:1.35;
   }
+
+  /* ---------- sealed letter ---------- */
+  .letter-card{ display:flex; gap:14px; align-items:center; width:100%; text-align:left; font:inherit; color:inherit;
+    cursor:pointer; padding:14px 16px; }
+  .letter-card.fresh{ background:var(--strawberry); }
+  .letter-card svg{ flex-shrink:0; }
+  .letter-card .lc-title{ display:block; font-family:'Gaegu',cursive; font-weight:700; font-size:20px; line-height:1.1; }
+  .letter-card .lc-sub{ display:block; font-family:'Caveat',cursive; font-size:17px; color:var(--matcha-deep); font-weight:700; margin-top:2px; }
+
+  .letter-stage{ position:fixed; inset:0; z-index:70; display:grid; place-items:center; padding:20px;
+    background:rgba(74,57,46,0.62); }
+  .letter-stage > *{ grid-area:1 / 1; }
+  .letter-stage:focus{ outline:none; }
+  .preview-tag{ position:fixed; top:14px; left:50%; transform:translateX(-50%); z-index:2; background:var(--butter);
+    border:2px solid var(--espresso); border-radius:20px; padding:5px 14px; font-weight:800; font-size:12.5px; white-space:nowrap; }
+  .letter-x{ position:fixed; top:12px; right:12px; z-index:2; width:40px; height:40px; border-radius:50%;
+    border:2px solid var(--espresso); background:var(--white); font-size:17px; cursor:pointer; color:var(--espresso); box-shadow:var(--shadow); }
+
+  .env-wrap{ display:flex; flex-direction:column; align-items:center; gap:18px; transition:opacity .35s ease, transform .4s ease; }
+  .envelope-btn{ position:relative; width:min(300px, 80vw); padding:0; border:none; background:none; cursor:pointer;
+    animation:envIn .55s cubic-bezier(.2,.9,.3,1.25) both; }
+  .envelope-btn:focus-visible{ outline:3px dashed var(--butter); outline-offset:10px; border-radius:16px; }
+  .envelope-btn .wiggle{ display:block; transform-origin:50% 70%; animation:envWiggle 3s ease-in-out 1.2s infinite; }
+  .envelope-btn svg{ display:block; width:100%; height:auto; overflow:visible; filter:drop-shadow(4px 5px 0 rgba(74,57,46,0.35)); }
+  .env-to{ position:absolute; left:0; right:0; bottom:11%; text-align:center; pointer-events:none;
+    font-family:'Gaegu',cursive; font-weight:700; font-size:clamp(20px, 7vw, 27px); color:var(--espresso); }
+  .letter-hint{ font-family:'Caveat',cursive; font-weight:700; font-size:21px; color:var(--white); }
+
+  .flap-front, .flap-back, .seal-g{ transform-box:fill-box; }
+  .flap-front, .flap-back{ transform-origin:50% 0%; }
+  .flap-back{ transform:scaleY(0); }
+  .seal-g{ transform-origin:50% 50%; }
+  .letter-stage.opening .wiggle{ animation:none; }
+  .letter-stage.opening .seal-g{ animation:sealPop .22s ease-in forwards; }
+  .letter-stage.opening .flap-front{ animation:flapShut .24s ease-in .12s forwards; }
+  .letter-stage.opening .flap-back{ animation:flapUp .3s ease-out .36s forwards; }
+  .letter-stage.opening .paper-g{ animation:paperUp .6s cubic-bezier(.3,1.35,.5,1) .6s forwards; }
+  .letter-stage.opening .letter-hint{ opacity:0; transition:opacity .2s; }
+  .letter-stage.reading .env-wrap{ opacity:0; transform:translateY(70px) scale(.9); pointer-events:none; }
+
+  @keyframes envIn{ from{ opacity:0; transform:translateY(40px) rotate(-7deg) scale(.9); } to{ opacity:1; transform:none; } }
+  @keyframes envWiggle{ 0%,84%,100%{ transform:rotate(0); } 88%{ transform:rotate(-3deg); } 92%{ transform:rotate(3deg); } 96%{ transform:rotate(-1.5deg); } }
+  @keyframes sealPop{ 40%{ transform:scale(1.15); } to{ transform:scale(0); opacity:0; } }
+  @keyframes flapShut{ to{ transform:scaleY(0); } }
+  @keyframes flapUp{ from{ transform:scaleY(0); } to{ transform:scaleY(-1); } }
+  @keyframes paperUp{ to{ transform:translateY(-84px); } }
+
+  .letter-sheet{ width:min(420px, 100%); max-height:calc(100dvh - 70px); overflow-y:auto; -webkit-overflow-scrolling:touch;
+    background-color:var(--white); border:3px solid var(--espresso); border-radius:18px; box-shadow:5px 6px 0 rgba(74,57,46,0.35);
+    padding:36px 22px 26px 54px;
+    background-image:
+      linear-gradient(90deg, transparent 38px, rgba(227,128,152,0.6) 38px 40px, transparent 40px),
+      repeating-linear-gradient(180deg, transparent 0 34px, var(--cream-deep) 34px 36px);
+    background-attachment:local;
+    opacity:0; visibility:hidden; transform:translateY(60px) rotate(2deg);
+    transition:opacity .4s ease, transform .6s cubic-bezier(.2,.9,.3,1.12), visibility 0s linear .6s; }
+  .letter-stage.reading .letter-sheet{ opacity:1; visibility:visible; transform:none;
+    transition:opacity .4s ease .12s, transform .6s cubic-bezier(.2,.9,.3,1.12) .12s, visibility 0s; }
+  .letter-sheet h2{ margin:0; font-family:'Gaegu',cursive; font-size:28px; line-height:36px; }
+  .letter-photo{ display:block; width:76%; margin:12px auto 22px; background:var(--white); border:2.5px solid var(--espresso);
+    border-radius:6px; padding:8px 8px 26px; transform:rotate(-2.5deg); box-shadow:var(--shadow); }
+  .letter-photo img{ display:block; width:100%; border-radius:3px; }
+  .letter-body{ font-family:'Caveat','Gaegu',ui-rounded,system-ui,sans-serif; font-size:25px; line-height:36px;
+    white-space:pre-wrap; overflow-wrap:anywhere; margin:0; }
+  .letter-sign{ font-family:'Caveat','Gaegu',ui-rounded,system-ui,sans-serif; font-weight:700; font-size:26px; line-height:36px;
+    text-align:right; margin:0 0 18px; }
+  .letter-sheet .btn{ margin-top:6px; }
+  .letter-body.thai, .letter-sign.thai{ font-size:19px; }
+
+  .letter-editor{ margin-top:24px; padding-top:16px; border-top:2px dashed var(--espresso); }
+  .letter-editor h3{ margin:0; font-size:22px; }
+  .letter-editor textarea{ min-height:150px; font-size:15px; line-height:1.45; }
+  .letter-photo-row{ display:flex; align-items:center; gap:10px; margin-top:10px; }
+  .letter-photo-row .thumb-btn{ width:56px; height:56px; }
+  .letter-status{ font-size:13px; font-weight:800; color:var(--strawberry-deep); margin-top:10px; }
+  .link-btn{ background:none; border:none; padding:0; font:inherit; font-size:12.5px; font-weight:700; color:#8a7a6b;
+    text-decoration:underline; cursor:pointer; }
+
+  @media (prefers-reduced-motion: reduce){
+    .envelope-btn, .envelope-btn .wiggle{ animation:none; }
+    .letter-sheet, .letter-stage.reading .letter-sheet, .env-wrap{ transition:none; transform:none; }
+  }
   .hidden{ display:none !important; }
   .disclosure{ font-size:11.5px; color:#8a7a6b; text-align:center; margin-top:2px; padding:0 10px; }
 </style>
@@ -245,6 +328,7 @@
   <main>
     <!-- HOME -->
     <section class="tab-panel active" id="panel-home">
+      <div id="letterCards"></div>
       <div class="card countdown-wrap">
         <div class="countdown-card">
           <div class="script" style="font-size:20px;">countdown until we meet</div>
@@ -380,7 +464,8 @@
     <div id="moodPackEditor"></div>
 
     <button class="btn green block" id="saveSettingsBtn" style="margin-top:14px;">save settings</button>
-    <div class="disclosure">check-ins, food, diary, moods, and settings are shared with anyone who has your app's passcode — only share it with your person. the "who's checking in" choice stays local to this device.</div>
+    <div class="letter-editor hidden" id="letterEditor"></div>
+    <div class="disclosure" style="margin-top:16px;">check-ins, food, diary, moods, and settings are shared with anyone who has your app's passcode — only share it with your person. the "who's checking in" choice stays local to this device.</div>
   </div>
 </div>
 
@@ -402,6 +487,45 @@
     <img class="avatar" id="moodPopupAvatar" src="">
     <div class="msg" id="moodPopupMsg"></div>
     <div class="from" id="moodPopupFrom"></div>
+  </div>
+</div>
+
+<!-- SEALED LETTER -->
+<div class="letter-stage hidden" id="letterStage" role="dialog" aria-modal="true" aria-label="a letter" tabindex="-1">
+  <div class="preview-tag hidden" id="letterPreviewTag">preview — only you see this</div>
+  <button class="letter-x" id="letterX" aria-label="close letter">✕</button>
+
+  <div class="env-wrap" id="envWrap">
+    <button class="envelope-btn" id="envelopeBtn" aria-label="open the letter">
+      <span class="wiggle">
+        <svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="4" y="4" width="292" height="192" rx="14" fill="#F9D1D9" stroke="#4A392E" stroke-width="4"/>
+          <path class="flap-back" d="M8 8 L150 116 L292 8 Z" fill="#F2A9BA" stroke="#4A392E" stroke-width="4" stroke-linejoin="round"/>
+          <g class="paper-g">
+            <rect x="30" y="22" width="240" height="160" rx="6" fill="#FFFDF8" stroke="#4A392E" stroke-width="3"/>
+            <path d="M52 50 H248 M52 72 H248 M52 94 H210" stroke="#F2E6CC" stroke-width="4" stroke-linecap="round"/>
+          </g>
+          <path d="M6 10 L150 114 L294 10 L294 184 Q294 194 284 194 L16 194 Q6 194 6 184 Z" fill="#F9D1D9"/>
+          <path d="M6 194 L150 104 L294 194 Z" fill="#F6C1CD" stroke="#4A392E" stroke-width="4" stroke-linejoin="round"/>
+          <path d="M4 18 V182 Q4 196 18 196 H282 Q296 196 296 182 V18" fill="none" stroke="#4A392E" stroke-width="4"/>
+          <path class="flap-front" d="M8 8 L150 116 L292 8 Z" fill="#F4B6C4" stroke="#4A392E" stroke-width="4" stroke-linejoin="round"/>
+          <g class="seal-g">
+            <circle cx="150" cy="114" r="23" fill="#E38098" stroke="#4A392E" stroke-width="3.5"/>
+            <path d="M150 126 C136 116 138 104 145 104 C148 104 150 107 150 109 C150 107 152 104 155 104 C162 104 164 116 150 126 Z" fill="#FFFDF8"/>
+          </g>
+        </svg>
+      </span>
+      <span class="env-to" id="letterTo"></span>
+    </button>
+    <div class="letter-hint" id="letterHint">tap the heart to open</div>
+  </div>
+
+  <div class="letter-sheet" id="letterSheet">
+    <h2 id="letterHeading"></h2>
+    <div class="letter-photo hidden" id="letterPhotoWrap"><img id="letterPhoto" alt=""></div>
+    <p class="letter-body" id="letterBody"></p>
+    <p class="letter-sign" id="letterSign"></p>
+    <button class="btn pink block" id="letterDone">close</button>
   </div>
 </div>
 
@@ -494,7 +618,23 @@ function defaultSettings(){
       A: DEFAULT_NOTES_A.map(t => ({ text: t, img: null })),
       B: DEFAULT_NOTES_B.map(t => ({ text: t, img: null }))
     },
+    letters: { A: null, B: null },   // letters.A is the letter written TO A
     initialized: false
+  };
+}
+
+function normalizeLetter(l){
+  if (!l || typeof l !== "object") return null;
+  const text = typeof l.text === "string" ? l.text : "";
+  const img = typeof l.img === "string" ? l.img : null;
+  if (!text.trim() && !img) return null;
+  if (typeof l.date !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(l.date)) return null;
+  return {
+    text, img,
+    date: l.date,
+    time: (typeof l.time === "string" && /^\d{2}:\d{2}$/.test(l.time)) ? l.time : "07:00",
+    sealedAt: typeof l.sealedAt === "string" ? l.sealedAt : "",
+    openedAt: typeof l.openedAt === "string" ? l.openedAt : null
   };
 }
 
@@ -523,6 +663,10 @@ function normalizeSettings(v){
       B: (v.zones && typeof v.zones.B === "string" && v.zones.B) || null
     },
     moodPack: { A: [], B: [] },
+    letters: {
+      A: normalizeLetter(v.letters && v.letters.A),
+      B: normalizeLetter(v.letters && v.letters.B)
+    },
     initialized: !!v.initialized
   };
   ["A","B"].forEach(side => {
@@ -889,6 +1033,328 @@ function pickMoodImage(side, idx){
   input.click();
 }
 
+
+/* ---------------- sealed letter ----------------
+   Each of you can seal one letter for the other. It lives in shared
+   settings as letters.<recipient> and is never rendered on the
+   recipient's phone until the chosen date and time arrive on THEIR clock.
+   It's hidden, not encrypted: someone reading the raw API response
+   could still find it, so it's a surprise, not a secret.            */
+
+// "2026-10-03 07:00" as the wall clock currently reads in `tz`.
+function wallClock(tz){
+  try{
+    const parts = new Intl.DateTimeFormat("en-CA", {
+      timeZone: tz, year:"numeric", month:"2-digit", day:"2-digit",
+      hour:"2-digit", minute:"2-digit", hourCycle:"h23"
+    }).formatToParts(new Date());
+    const g = (t) => (parts.find(p => p.type === t) || {}).value;
+    return `${g("year")}-${g("month")}-${g("day")} ${g("hour")}:${g("minute")}`;
+  }catch(e){
+    const d = new Date();
+    return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+  }
+}
+const letterTo = (side) => (settings && settings.letters && settings.letters[side]) || null;
+const letterIsOpen = (l, side) => !!l && `${l.date} ${l.time}` <= wallClock(zoneFor(side));
+
+// Formats the chosen wall time as written, e.g. "sat 3 oct, 7:00am".
+function fmtWall(date, time){
+  const [y,m,d] = date.split("-").map(Number);
+  const [hh,mm] = (time || "00:00").split(":").map(Number);
+  const dt = new Date(Date.UTC(y, m-1, d, hh, mm));
+  const day = new Intl.DateTimeFormat("en-GB", { timeZone:"UTC", weekday:"short", day:"numeric", month:"short" }).format(dt);
+  const clock = new Intl.DateTimeFormat("en-US", { timeZone:"UTC", hour:"numeric", minute:"2-digit" }).format(dt);
+  return (day + ", " + clock).toLowerCase().replace(" am","am").replace(" pm","pm");
+}
+function fmtOpened(iso, side){
+  const d = new Date(iso);
+  if (isNaN(d.getTime())) return "";
+  try{
+    const day = new Intl.DateTimeFormat("en-GB", { timeZone:zoneFor(side), day:"numeric", month:"short" }).format(d).toLowerCase();
+    return clockTime(iso, side) + ", " + day;
+  }catch(e){ return ""; }
+}
+
+const MINI_ENVELOPE = `<svg viewBox="0 0 46 32" width="46" height="32" aria-hidden="true">
+  <rect x="2" y="2" width="42" height="28" rx="5" fill="#F9D1D9" stroke="#4A392E" stroke-width="2.5"/>
+  <path d="M3.5 4 L23 18 L42.5 4" fill="none" stroke="#4A392E" stroke-width="2.5" stroke-linejoin="round"/>
+  <circle cx="23" cy="18" r="4.5" fill="#E38098" stroke="#4A392E" stroke-width="2"/></svg>`;
+
+let letterCardsKey = "";
+function renderLetterCards(){
+  const box = $("letterCards");
+  if (!box) return;
+  if (!settings || !mySide){ box.innerHTML = ""; letterCardsKey = ""; return; }
+  const names = settings.names;
+  const other = otherSide(mySide);
+  const cards = [];
+
+  const mine = letterTo(mySide);                    // written to me
+  if (mine && letterIsOpen(mine, mySide)){
+    cards.push({ action:"read", fresh: !mine.openedAt,
+      title: "a letter from " + names[other],
+      sub: mine.openedAt ? "tap to read it again" : "tap to open it ♡" });
+  }
+  const theirs = letterTo(other);                   // written by me
+  if (theirs){
+    let title, sub;
+    if (theirs.openedAt){ title = names[other] + " opened your letter ♡"; sub = "at " + fmtOpened(theirs.openedAt, other) + ", " + names[other] + "'s time"; }
+    else if (letterIsOpen(theirs, other)){ title = "your letter to " + names[other] + " is waiting"; sub = "delivered, not opened yet"; }
+    else { title = "your letter to " + names[other] + " is sealed"; sub = "opens " + fmtWall(theirs.date, theirs.time) + ", " + names[other] + "'s time"; }
+    cards.push({ action:"preview", fresh:false, title, sub });
+  }
+
+  const key = JSON.stringify(cards);
+  if (key === letterCardsKey) return;               // runs every second; only touch the DOM on change
+  letterCardsKey = key;
+  box.innerHTML = cards.map(c => `
+    <button class="card letter-card${c.fresh ? " fresh" : ""}" data-letter="${c.action}">
+      ${MINI_ENVELOPE}
+      <span><span class="lc-title">${escapeHtml(c.title)}</span><span class="lc-sub">${escapeHtml(c.sub)}</span></span>
+    </button>`).join("");
+}
+
+$("letterCards").addEventListener("click", (e) => {
+  const btn = e.target.closest("[data-letter]");
+  if (!btn) return;
+  if (btn.dataset.letter === "read"){
+    const l = letterTo(mySide);
+    if (l) openLetter(l, { from: otherSide(mySide), to: mySide, envelope: !l.openedAt });
+  } else {
+    const other = otherSide(mySide);
+    const l = letterTo(other);
+    if (l) openLetter(l, { from: mySide, to: other, preview: true, envelope: true });
+  }
+});
+
+let letterSession = null;
+const reduceMotion = () => window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+function openLetter(l, opts){
+  const names = settings.names;
+  letterSession = { letter: l, ...opts };
+  $("letterTo").textContent = "For " + names[opts.to];
+  $("letterHeading").textContent = "To " + names[opts.to] + ",";
+  $("letterBody").textContent = l.text;
+  $("letterSign").textContent = "From " + names[opts.from] + " ♡";
+  $("letterBody").classList.toggle("thai", /[\u0E00-\u0E7F]/.test(l.text));
+  $("letterSign").classList.toggle("thai", /[\u0E00-\u0E7F]/.test(names[opts.from]));
+  $("letterPhotoWrap").classList.toggle("hidden", !l.img);
+  $("letterPhoto").src = l.img || "";
+  $("letterPreviewTag").classList.toggle("hidden", !opts.preview);
+
+  const stage = $("letterStage");
+  stage.classList.remove("opening", "reading", "hidden");
+  $("letterSheet").scrollTop = 0;
+  if (opts.envelope && !reduceMotion()){
+    stage.focus({ preventScroll:true });
+  } else {
+    unsealLetter(true);
+  }
+}
+
+function unsealLetter(instant){
+  if (!letterSession) return;
+  const stage = $("letterStage");
+  if (stage.classList.contains("opening") || stage.classList.contains("reading")) return;
+
+  const s = letterSession;
+  if (!s.preview && s.to === mySide){
+    localStorage.setItem("letterSeen", s.letter.sealedAt);
+    if (!s.letter.openedAt){
+      const now = new Date().toISOString();
+      s.letter.openedAt = now;                       // so the card updates right away
+      saveSettingsPatch({ ["letters." + mySide + ".openedAt"]: now });
+      renderLetterCards();
+    }
+  }
+
+  if (instant){
+    stage.classList.add("reading");
+    $("letterDone").focus({ preventScroll:true });
+    return;
+  }
+  stage.classList.add("opening");
+  setTimeout(() => {
+    stage.classList.add("reading");
+    $("letterDone").focus({ preventScroll:true });
+  }, 1250);
+}
+
+function closeLetter(){
+  $("letterStage").classList.add("hidden");
+  $("letterStage").classList.remove("opening", "reading");
+  letterSession = null;
+  renderLetterCards();
+}
+$("envelopeBtn").addEventListener("click", () => unsealLetter(false));
+$("letterX").addEventListener("click", closeLetter);
+$("letterDone").addEventListener("click", closeLetter);
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && !$("letterStage").classList.contains("hidden")) closeLetter();
+});
+
+// Called every second: flips cards over at the right minute and pops the
+// envelope open the first time a letter becomes readable on this phone.
+function tickLetters(){
+  renderLetterCards();
+  if (!settings || !mySide) return;
+  const l = letterTo(mySide);
+  if (!l || l.openedAt || !letterIsOpen(l, mySide)) return;
+  if (localStorage.getItem("letterSeen") === l.sealedAt) return;
+  if (!$("letterStage").classList.contains("hidden")) return;
+  if (!$("passModal").classList.contains("hidden") || !$("whoModal").classList.contains("hidden")) return;
+  openLetter(l, { from: otherSide(mySide), to: mySide, envelope: true });
+}
+
+/* ---- writing one (settings) ---- */
+// Secret way in: tap the app title 5 times quickly.
+let titleTaps = [];
+$("appTitle").addEventListener("click", () => {
+  const now = Date.now();
+  titleTaps = titleTaps.filter(t => now - t < 2500).concat(now);
+  if (titleTaps.length < 5) return;
+  titleTaps = [];
+  localStorage.setItem("letterWriter", "1");
+  toast("letter writing unlocked on this phone 💌");
+  openSettingsModal().then(() => {
+    const ed = $("letterEditor");
+    if (ed) ed.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+});
+
+let letterDraftImg = null;
+
+function renderLetterEditor(){
+  const box = $("letterEditor");
+  if (!mySide){ box.innerHTML = ""; return; }
+  const names = settings.names;
+  const other = otherSide(mySide);
+  const saved = letterTo(other);
+  // Hidden unless this phone was unlocked by tapping the app title 5 times,
+  // so seeing a "write a letter" section in settings can't spoil anything.
+  if (localStorage.getItem("letterWriter") !== "1" && !saved){
+    box.innerHTML = ""; box.classList.add("hidden"); return;
+  }
+  box.classList.remove("hidden");
+  letterDraftImg = saved ? saved.img : null;
+
+  let status = "nothing sealed yet";
+  if (saved){
+    if (saved.openedAt) status = names[other] + " opened it at " + fmtOpened(saved.openedAt, other) + " ♡";
+    else if (letterIsOpen(saved, other)) status = "delivered — waiting for " + names[other] + " to open it";
+    else status = "sealed ✓ opens " + fmtWall(saved.date, saved.time);
+  }
+  const zone = zoneFor(other);
+
+  box.innerHTML = `
+    <h3 class="wobbly">a letter for ${escapeHtml(names[other])} 💌</h3>
+    <div class="hint">${escapeHtml(names[other])} won't see anything until it opens — then it pops up by itself the next time the app is opened.</div>
+
+    <label class="field-label" for="letterDate">opens on</label>
+    <div class="row">
+      <input type="date" id="letterDate" value="${saved ? saved.date : ""}">
+      <input type="time" id="letterTime" value="${saved ? saved.time : "07:00"}">
+    </div>
+    <div class="hint">in ${escapeHtml(names[other])}'s time (${escapeHtml(zone)})</div>
+
+    <label class="field-label" for="letterText">your letter</label>
+    <textarea id="letterText" placeholder="write it like you'd say it…">${saved ? escapeHtml(saved.text) : ""}</textarea>
+
+    <div class="letter-photo-row">
+      <div class="thumb-btn" id="letterImgBtn" role="button" aria-label="add a photo">${letterDraftImg ? `<img src="${letterDraftImg}" alt="">` : "🖼️"}</div>
+      <div class="hint" style="margin:0; flex:1;">${letterDraftImg ? "tap to change the photo" : "add a photo (optional)"}</div>
+      ${letterDraftImg ? '<button class="link-btn" id="letterImgRemove">remove</button>' : ""}
+    </div>
+
+    <div class="letter-status" id="letterStatus">${escapeHtml(status)}</div>
+    <div class="row" style="margin-top:12px;">
+      <button class="btn small" id="letterPreviewBtn">preview</button>
+      <button class="btn pink small" id="letterSealBtn">${saved ? "seal again" : "seal letter"}</button>
+    </div>
+    ${saved ? `<div style="text-align:center; margin-top:10px;"><button class="link-btn" id="letterDeleteBtn">remove this letter</button></div>` : ""}
+  `;
+
+  $("letterImgBtn").addEventListener("click", pickLetterImage);
+  if ($("letterImgRemove")) $("letterImgRemove").addEventListener("click", () => { letterDraftImg = null; refreshLetterPhotoRow(); });
+  $("letterPreviewBtn").addEventListener("click", previewDraftLetter);
+  $("letterSealBtn").addEventListener("click", sealLetter);
+  if ($("letterDeleteBtn")) $("letterDeleteBtn").addEventListener("click", deleteLetter);
+}
+
+// Re-renders only the photo row so a half-written letter isn't wiped.
+function refreshLetterPhotoRow(){
+  const row = document.querySelector("#letterEditor .letter-photo-row");
+  if (!row) return;
+  row.innerHTML = `
+    <div class="thumb-btn" id="letterImgBtn" role="button" aria-label="add a photo">${letterDraftImg ? `<img src="${letterDraftImg}" alt="">` : "🖼️"}</div>
+    <div class="hint" style="margin:0; flex:1;">${letterDraftImg ? "tap to change the photo" : "add a photo (optional)"}</div>
+    ${letterDraftImg ? '<button class="link-btn" id="letterImgRemove">remove</button>' : ""}`;
+  $("letterImgBtn").addEventListener("click", pickLetterImage);
+  if ($("letterImgRemove")) $("letterImgRemove").addEventListener("click", () => { letterDraftImg = null; refreshLetterPhotoRow(); });
+}
+
+function pickLetterImage(){
+  const input = document.createElement("input");
+  input.type = "file"; input.accept = "image/*";
+  input.onchange = async () => {
+    if (!input.files[0]) return;
+    try{
+      letterDraftImg = await resizeImageFile(input.files[0], 720, 0.75);
+      refreshLetterPhotoRow();
+    }catch(e){ toast("couldn't load that image"); }
+  };
+  input.click();
+}
+
+function draftLetter(){
+  return {
+    text: $("letterText").value,
+    img: letterDraftImg,
+    date: $("letterDate").value,
+    time: $("letterTime").value || "07:00"
+  };
+}
+
+function previewDraftLetter(){
+  const d = draftLetter();
+  if (!d.text.trim() && !d.img){ toast("write something first"); return; }
+  openLetter({ ...d, sealedAt:"", openedAt:null }, { from: mySide, to: otherSide(mySide), preview: true, envelope: true });
+}
+
+async function sealLetter(){
+  const other = otherSide(mySide);
+  const d = draftLetter();
+  if (!d.text.trim() && !d.img){ toast("write something first"); return; }
+  if (!d.date){ toast("pick the day it opens"); return; }
+
+  const letter = { ...d, sealedAt: new Date().toISOString(), openedAt: null };
+  const btn = $("letterSealBtn");
+  btn.disabled = true; btn.textContent = "sealing…";
+  const ok = await saveSettingsPatch({ ["letters." + other]: letter });
+  btn.disabled = false;
+  if (!ok){ btn.textContent = "seal letter"; return; }
+
+  settings.letters[other] = normalizeLetter(letter);
+  renderLetterEditor();
+  renderLetterCards();
+  toast(letterIsOpen(letter, other)
+    ? "sealed — that time has passed, so it's already delivered"
+    : "letter sealed 💌");
+}
+
+async function deleteLetter(){
+  const other = otherSide(mySide);
+  if (!confirm("remove the letter for " + settings.names[other] + "?")) return;
+  const ok = await saveSettingsPatch({ ["letters." + other]: null });
+  if (!ok) return;
+  settings.letters[other] = null;
+  renderLetterEditor();
+  renderLetterCards();
+  toast("letter removed");
+}
+
 /* ---------------- timezone picker ---------------- */
 function fillTimeZones(id, selected){
   const sel = $(id);
@@ -946,6 +1412,7 @@ async function openSettingsModal(){
   $("setSideB").classList.toggle("selected", mySide === "B");
 
   renderMoodPackEditor();
+  renderLetterEditor();
   renderHeader();
   $("settingsModal").classList.remove("hidden");
 }
@@ -1042,6 +1509,7 @@ async function chooseSide(side){
   currentDayStr = todayStr();
   currentDay = await loadDay(currentDayStr);
   renderLockState();
+  tickLetters();
   if (!settings.initialized) openSettingsModal();
 }
 
@@ -1192,6 +1660,7 @@ function repaint(){
   if (activeTab === "food") renderFood();
   if (activeTab === "mood") renderMood();
   if (activeTab === "diary"){ renderDiaryToday(); renderDiaryHistory(); }
+  tickLetters();
 }
 
 async function pullDay(ds){
@@ -1291,7 +1760,7 @@ async function init(){
 
   if (!started){
     started = true;
-    setInterval(renderCountdown, 1000);
+    setInterval(() => { renderCountdown(); tickLetters(); }, 1000);
     scheduleSync();
   }
 
@@ -1301,6 +1770,7 @@ async function init(){
     $("whoModal").classList.remove("hidden");
   } else {
     renderLockState();
+    tickLetters();
     if (!settings.initialized) openSettingsModal();
   }
 }
