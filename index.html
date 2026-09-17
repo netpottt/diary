@@ -329,7 +329,127 @@
     .envelope-btn{ animation:none; }
     .envelope-btn .wiggle{ animation:none; }
     .card, .modal-backdrop, .modal-backdrop .modal{ animation:none; }
+    .dog-walk .d-body, .dog-walk .leg-a, .dog-walk .leg-b, .dog-happy .d-body{ animation:none; }
   }
+  /* ---------- selfie rules ---------- */
+  .shutter-row{ position:relative; display:flex; align-items:center; justify-content:center; }
+  .info-btn{
+    width:30px; height:30px; border-radius:50%; border:2px solid var(--espresso); padding:0;
+    background:var(--white); color:var(--espresso); font-family:'Gaegu',cursive; font-weight:700;
+    font-size:17px; line-height:1; cursor:pointer; box-shadow:var(--shadow); flex-shrink:0;
+    display:flex; align-items:center; justify-content:center; -webkit-tap-highlight-color:transparent;
+    -webkit-user-select:none; user-select:none; touch-action:manipulation;
+  }
+  .info-btn:active{ transform:translate(1px,1px); }
+  .shutter-row .info-btn{ position:absolute; left:100%; margin-left:12px; }
+  .info-btn.corner{ position:absolute; top:12px; right:14px; width:27px; height:27px; font-size:15px; z-index:2; }
+  .info-btn.tiny{ width:25px; height:25px; font-size:14px; }
+  /* padding-right keeps the tap badge clear of the ✕ in the corner */
+  .rules-head{ display:flex; align-items:flex-start; gap:10px; padding-right:30px; }
+  .rules-head > div{ flex:1; }
+  .rules-title{ margin:0; font-size:23px; line-height:1.15; color:var(--strawberry-deep); }
+  .rules-sub{ font-family:'Caveat',cursive; font-size:17px; font-weight:700; color:var(--matcha-deep); margin:2px 0 6px; }
+  .rules-h{ margin:16px 0 8px; font-size:20px; }
+  .rules-h.good{ color:var(--matcha-deep); }
+  .rules-h.bad{ color:#C0392B; }
+  .rule-item{ display:flex; gap:10px; align-items:center; background:var(--white); border:2px solid var(--espresso);
+    border-radius:14px; padding:8px; margin-bottom:8px; }
+  .rule-pic{ width:76px; height:76px; border-radius:10px; border:2px dashed var(--espresso); background:var(--cream-deep);
+    display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0; overflow:hidden; }
+  .rule-pic.filled{ border-style:solid; }
+  .rule-pic img{ width:100%; height:100%; object-fit:cover; }
+  .rule-item.editing .rule-pic{ cursor:pointer; background:var(--butter); }
+  .rule-cap{ font-family:'Caveat',cursive; font-size:19px; line-height:1.2; flex:1; }
+  .rule-cap-input{ font-size:13px; }
+  .rules-edit-bar{ background:var(--butter); border:2px solid var(--espresso); border-radius:14px; padding:10px 12px;
+    font-size:12.5px; font-weight:800; margin:10px 0 2px; }
+
+  /* ---------- streak ---------- */
+  .streak-card{ text-align:center; }
+  .streak-num{ font-family:'Gaegu',cursive; font-size:56px; font-weight:700; line-height:1; margin-top:4px; }
+  .streak-label{ font-family:'Caveat',cursive; font-size:19px; font-weight:700; color:var(--matcha-deep); }
+  .fire-btn{ width:88px; height:88px; border-radius:50%; border:3px solid var(--espresso); background:var(--cream-deep);
+    font-size:40px; cursor:pointer; box-shadow:var(--shadow); margin:14px auto 8px; display:block; line-height:1; padding:0;
+    filter:grayscale(0.85); transition:filter .25s ease, background .25s ease; }
+  .fire-btn.done{ background:var(--butter); filter:none; cursor:default; }
+  .fire-btn:active{ transform:translate(2px,2px); }
+  .fire-btn.pop{ animation:firePop .55s cubic-bezier(.2,.9,.3,1.4); }
+  @keyframes firePop{ 0%{transform:scale(1);} 40%{transform:scale(1.28) rotate(-9deg);} 70%{transform:scale(.96) rotate(4deg);} 100%{transform:scale(1);} }
+  .streak-status{ font-size:13px; font-weight:800; color:var(--strawberry-deep); min-height:18px; padding:0 6px; }
+  .streak-people{ display:flex; justify-content:center; gap:22px; margin-top:12px; }
+  .streak-people .p{ font-size:11.5px; font-weight:800; color:var(--matcha-deep); text-align:center; }
+  .streak-people .p .st{ display:block; font-size:24px; line-height:1.25; filter:grayscale(1); opacity:.45; }
+  .streak-people .p.lit .st{ filter:none; opacity:1; }
+  .streak-best{ font-size:11.5px; color:#8a7a6b; margin-top:10px; }
+
+  /* ---------- snack corner ---------- */
+  .snack-toggle{ width:100%; background:none; border:none; padding:0; font:inherit; color:inherit; cursor:pointer;
+    display:flex; align-items:center; gap:8px; text-align:left; }
+  .snack-toggle .t{ font-family:'Gaegu',cursive; font-size:22px; font-weight:700; }
+  .snack-toggle .cnt{ flex:1; font-family:'Caveat',cursive; font-size:16px; font-weight:700; color:var(--matcha-deep); }
+  .snack-toggle .chev{ font-size:14px; transition:transform .2s ease; }
+  .snack-toggle[aria-expanded="true"] .chev{ transform:rotate(180deg); }
+  .snack-body{ margin-top:14px; }
+  .snack-row{ display:flex; gap:8px; align-items:flex-start; margin-bottom:10px; }
+  .snack-photo{ width:54px;height:54px;border-radius:12px; border:2px dashed var(--espresso); background:var(--cream-deep);
+    display:flex;align-items:center;justify-content:center; font-size:18px; overflow:hidden; cursor:pointer; flex-shrink:0; }
+  .snack-photo.filled{ border-style:solid; }
+  .snack-photo img{ width:100%;height:100%;object-fit:cover; }
+  .snack-fields{ flex:1; min-width:0; }
+  .snack-fields select, .snack-fields input{ font-size:14px; padding:8px 10px; }
+  .snack-fields input{ margin-top:6px; }
+  .snack-del{ background:none; border:none; font-size:16px; cursor:pointer; color:#9c8b7c; padding:6px 2px; }
+
+  /* ---------- food history ---------- */
+  .polaroid .ph{ width:100%; height:90px; border-radius:4px; background:var(--cream-deep); display:flex;
+    align-items:center; justify-content:center; font-size:36px; }
+  .day-acc{ border:2px solid var(--espresso); border-radius:14px; margin-bottom:8px; background:var(--white); overflow:hidden; }
+  .day-head{ width:100%; background:none; border:none; padding:10px 12px; font:inherit; color:inherit; cursor:pointer;
+    display:flex; align-items:center; gap:8px; text-align:left; }
+  .day-head .dn{ font-family:'Gaegu',cursive; font-weight:700; font-size:16.5px; flex:1; }
+  .day-head .badge{ font-size:10.5px; font-weight:800; color:var(--matcha-deep); background:var(--matcha-light);
+    border-radius:10px; padding:2px 7px; }
+  .day-head .chev{ font-size:13px; transition:transform .2s ease; }
+  .day-acc.open .day-head{ background:var(--cream-deep); }
+  .day-acc.open .day-head .chev{ transform:rotate(180deg); }
+  .day-body{ padding:10px 12px 12px; border-top:2px dashed var(--cream-deep); }
+  .day-body .gallery{ margin-top:0; }
+
+  /* ---------- maltise nhoy ---------- */
+  .dog-wrap{ position:fixed; bottom:84px; left:0; z-index:15; width:66px; height:64px; cursor:pointer;
+    -webkit-tap-highlight-color:transparent; touch-action:manipulation; will-change:transform; }
+  .dog-wrap svg{ display:block; width:100%; height:100%; overflow:visible; }
+  .dog-flip{ display:block; width:100%; height:100%; transition:transform .18s ease; }
+  .dog-bubble{ position:absolute; bottom:100%; left:50%; margin-bottom:2px; transform:translateX(-50%);
+    background:var(--white); border:2px solid var(--espresso); border-radius:12px; padding:2px 9px; white-space:nowrap;
+    font-family:'Gaegu',cursive; font-weight:700; font-size:13px; box-shadow:2px 2px 0 rgba(74,57,46,0.18); }
+  .dog-heart{ position:absolute; bottom:64%; left:50%; font-size:14px; pointer-events:none;
+    animation:heartUp 1.15s ease-out forwards; }
+  @keyframes heartUp{
+    from{ opacity:1; transform:translate(-50%,0) scale(.5); }
+    to  { opacity:0; transform:translate(calc(-50% + var(--dx,0px)), -52px) scale(1.2); }
+  }
+  .d-body, .leg-a, .leg-b{ transform-box:fill-box; transform-origin:50% 50%; }
+  .dog-walk .d-body{ animation:dogBob .36s ease-in-out infinite; }
+  .dog-walk .leg-a{ animation:legA .36s ease-in-out infinite; }
+  .dog-walk .leg-b{ animation:legB .36s ease-in-out infinite; }
+  @keyframes dogBob{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(-2px);} }
+  @keyframes legA{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(-3.5px);} }
+  @keyframes legB{ 0%,100%{ transform:translateY(-3.5px);} 50%{ transform:translateY(0);} }
+  .d-eyes-happy, .d-cheeks, .d-smile{ display:none; }
+  .dog-happy .d-eyes{ display:none; }
+  .dog-happy .d-mouth{ display:none; }
+  .dog-happy .d-eyes-happy, .dog-happy .d-cheeks, .dog-happy .d-smile{ display:inline; }
+  .dog-happy .d-body{ animation:dogHop .45s cubic-bezier(.2,.9,.3,1.5); }
+  @keyframes dogHop{ 0%{transform:translateY(0) scale(1);} 40%{transform:translateY(-7px) scale(1.06);} 100%{transform:translateY(0) scale(1);} }
+  .dog-popup{ text-align:center; }
+  .dog-stage{ width:150px; height:146px; margin:2px auto 6px; }
+  .dog-stage svg{ display:block; width:100%; height:100%; overflow:visible; }
+  .dog-count{ font-family:'Gaegu',cursive; font-size:42px; font-weight:700; line-height:1; }
+  .dog-msg{ font-family:'Caveat',cursive; font-size:22px; line-height:1.25; margin:6px 4px 16px; }
+  .dog-name{ font-size:12px; font-weight:800; color:var(--matcha-deep); letter-spacing:.5px; }
+  .check-row{ display:flex; align-items:center; gap:9px; font-size:13.5px; font-weight:700; margin-top:4px; }
+  .check-row input[type=checkbox]{ width:20px; height:20px; accent-color:var(--strawberry-deep); flex-shrink:0; }
   .hidden{ display:none !important; }
   .disclosure{ font-size:11.5px; color:#8a7a6b; text-align:center; margin-top:2px; padding:0 10px; }
 </style>
@@ -361,13 +481,26 @@
         </div>
         <div class="locked-overlay" id="lockOverlay">
           <div class="wobbly" style="font-size:17px; margin-bottom:10px;">check in with a selfie<br>to unlock today ✨</div>
-          <button class="shutter-btn" id="shutterBtn">📸</button>
+          <div class="shutter-row">
+            <button class="shutter-btn" id="shutterBtn">📸</button>
+            <button class="info-btn" id="rulesBtnHome" aria-label="the selfie rules">i</button>
+          </div>
           <div class="hint" style="margin-top:8px;">this activates today for you</div>
         </div>
       </div>
       <div class="card" id="selfiesCard" style="display:none;">
+        <button class="info-btn corner" id="rulesBtnCard" aria-label="the selfie rules">i</button>
         <h2>today's check-in</h2>
         <div class="today-selfies" id="todaySelfies"></div>
+      </div>
+      <div class="card streak-card" id="streakCard" style="display:none;">
+        <h2>our streak</h2>
+        <div class="streak-num" id="streakNum">0</div>
+        <div class="streak-label" id="streakLabel">days in a row</div>
+        <button class="fire-btn" id="fireBtn" aria-label="hit the fire for today">🔥</button>
+        <div class="streak-status" id="streakStatus"></div>
+        <div class="streak-people" id="streakPeople"></div>
+        <div class="streak-best" id="streakBest"></div>
       </div>
     </section>
 
@@ -391,9 +524,22 @@
           </div>
         </div>
       </div>
+      <div class="card snack-card">
+        <button class="snack-toggle" id="snackToggle" aria-expanded="false" aria-controls="snackBody">
+          <span class="t">🍬 snack corner</span>
+          <span class="cnt" id="snackCount"></span>
+          <span class="chev">▾</span>
+        </button>
+        <div class="snack-body hidden" id="snackBody"></div>
+      </div>
       <div class="card">
         <h2>today's table</h2>
         <div class="gallery" id="foodGallery"></div>
+      </div>
+      <div class="card">
+        <h2>🗓️ the past two weeks</h2>
+        <div class="hint" style="margin-bottom:10px;">each day stays for 14 days, then it rolls off the bottom. tap a day to open it.</div>
+        <div id="foodHistory"></div>
       </div>
     </section>
 
@@ -488,6 +634,9 @@
     <label class="field-label" style="margin-top:20px;">my mood notes (shown to my person when they check their mood)</label>
     <div id="moodPackEditor"></div>
 
+    <label class="field-label" style="margin-top:18px;">maltise nhoy 🐶</label>
+    <label class="check-row"><input type="checkbox" id="setDogOn"> let her walk around (this phone only)</label>
+
     <button class="btn green block" id="saveSettingsBtn" style="margin-top:14px;">save settings</button>
     <div class="letter-editor hidden" id="letterEditor"></div>
     <div class="disclosure" style="margin-top:16px;">check-ins, food, diary, moods, and settings are shared with anyone who has your app's passcode — only share it with your person. the "who's checking in" choice stays local to this device.</div>
@@ -512,6 +661,43 @@
     <img class="avatar" id="moodPopupAvatar" src="">
     <div class="msg" id="moodPopupMsg"></div>
     <div class="from" id="moodPopupFrom"></div>
+  </div>
+</div>
+
+<!-- SELFIE RULES -->
+<div class="modal-backdrop center hidden" id="rulesModal">
+  <div class="modal">
+    <button class="close-x" id="closeRules">✕</button>
+    <div class="rules-head">
+      <div>
+        <h2 class="wobbly rules-title">SELFIES RULE !!</h2>
+        <div class="rules-sub">(bc win wanna see topten baab temtem)</div>
+      </div>
+      <button class="info-btn tiny" id="rulesTapBadge" aria-label="tap five times to add photos">i</button>
+    </div>
+
+    <div class="rules-edit-bar hidden" id="rulesEditBar">
+      photo boxes are unlocked — tap one to add your example, and you can retype the captions too.
+      <button class="btn green small" id="saveRulesBtn" style="display:block; width:100%; margin-top:8px;">save the rules</button>
+    </div>
+
+    <h3 class="rules-h good">✓ do it like this my byy</h3>
+    <div id="rulesGood"></div>
+    <h3 class="rules-h bad">✗ don't do this my byy</h3>
+    <div id="rulesBad"></div>
+
+    <div class="hint" style="text-align:center; margin-top:14px;">psst — tap the little <b>i</b> five times to add or change these photos</div>
+  </div>
+</div>
+
+<!-- MALTISE NHOY POPUP -->
+<div class="modal-backdrop center hidden" id="dogPopupModal">
+  <div class="modal dog-popup">
+    <div class="dog-stage dog-happy" id="dogPopupStage"></div>
+    <div class="dog-count" id="dogPopupCount"></div>
+    <div class="dog-msg" id="dogPopupMsg"></div>
+    <div class="dog-name">maltise nhoy</div>
+    <button class="btn pink block" id="closeDogPopup" style="margin-top:14px;">yay ♡</button>
   </div>
 </div>
 
@@ -554,6 +740,11 @@
   </div>
 </div>
 
+<div class="dog-wrap hidden" id="dogWrap" role="button" tabindex="0" aria-label="maltise nhoy — tap her">
+  <div class="dog-bubble hidden" id="dogBubble"></div>
+  <span class="dog-flip" id="dogFlip"></span>
+</div>
+
 <div class="toast hidden" id="toast"></div>
 
 <script>
@@ -574,6 +765,34 @@ const DEFAULT_NOTES_B = [
   "you are my absolute favorite person"
 ];
 const MOOD_COLORS = ["#9FB2C4","#B7C79A","#838F58","#F0AE5C","#E38098"];
+
+// The snack list. "something else…" is always there, so nothing is ever
+// missing — but nobody has to type when they're tired either.
+const SNACK_OPTIONS = [
+  "🍨 ice cream", "🍰 cake", "🍪 cookies", "🍫 chocolate", "🧋 boba",
+  "☕ coffee", "🧁 pastry", "🍩 donut", "🍬 candy", "🍓 fruit",
+  "🥛 yogurt / milk", "🍜 instant noodles", "🍟 chips / fries", "🍿 popcorn",
+  "🥜 nuts", "🍡 thai dessert", "🍞 bread / toast", "🥤 soda"
+];
+
+// Captions for the selfie rule sheet. The photos go in from the app
+// itself — tap the little "i" five times to unlock the boxes.
+const DEFAULT_RULES = {
+  good: [
+    "face in the frame, baab temtem. that's the whole rule ♡",
+    "camera at eye level byy — you're not filming your ceiling",
+    "sleepy face counts. messy hair counts. just be in it",
+    "stand by a window, good light is a free glow up",
+    "half a smile is devastating. do that one again tomorrow"
+  ],
+  bad: [
+    "don't do this my byy — that's the ceiling. i'm not dating the ceiling",
+    "don't do this my byy — 0.5x from below is a crime scene photo",
+    "don't do this my byy — a quarter of a forehead is NOT baab temtem 😤",
+    "don't do this my byy — blurry potato mode, i can't even see you",
+    "don't do this my byy — no face, just vibes? rejected, retake it 📸"
+  ]
+};
 // Sync cadence. Vercel functions can't hold a websocket open, so the app
 // polls a tiny "has anything changed?" endpoint instead. While you're
 // actually using it that's every 3s, which feels live; when you've been
@@ -644,6 +863,11 @@ function defaultSettings(){
       B: DEFAULT_NOTES_B.map(t => ({ text: t, img: null }))
     },
     letters: { A: null, B: null },   // letters.A is the letter written TO A
+    streak: { count: 0, lastDay: null, best: 0 },   // shared — both of you have to hit it
+    selfieRules: {
+      good: DEFAULT_RULES.good.map(c => ({ caption: c, img: null })),
+      bad:  DEFAULT_RULES.bad.map(c => ({ caption: c, img: null }))
+    },
     initialized: false
   };
 }
@@ -664,7 +888,8 @@ function normalizeLetter(l){
 }
 
 function emptySide(){
-  return { checkin:null, checkinTime:null, food:{lunch:null,dinner:null}, diary:"", mood:null };
+  return { checkin:null, checkinTime:null, food:{lunch:null,dinner:null,snacks:[]},
+           diary:"", mood:null, fire:null };
 }
 function defaultDay(){
   return { A: emptySide(), B: emptySide() };
@@ -692,8 +917,24 @@ function normalizeSettings(v){
       A: normalizeLetter(v.letters && v.letters.A),
       B: normalizeLetter(v.letters && v.letters.B)
     },
+    streak: {
+      count:   (v.streak && typeof v.streak.count === "number") ? v.streak.count : 0,
+      lastDay: (v.streak && typeof v.streak.lastDay === "string") ? v.streak.lastDay : null,
+      best:    (v.streak && typeof v.streak.best === "number") ? v.streak.best : 0
+    },
+    selfieRules: { good: [], bad: [] },
     initialized: !!v.initialized
   };
+  ["good","bad"].forEach(kind => {
+    const stored = (v.selfieRules && Array.isArray(v.selfieRules[kind])) ? v.selfieRules[kind] : [];
+    s.selfieRules[kind] = DEFAULT_RULES[kind].map((def, i) => {
+      const e = stored[i];
+      return {
+        caption: (e && typeof e.caption === "string" && e.caption.trim()) ? e.caption : def,
+        img: (e && typeof e.img === "string") ? e.img : null
+      };
+    });
+  });
   ["A","B"].forEach(side => {
     const stored = (v.moodPack && Array.isArray(v.moodPack[side])) ? v.moodPack[side] : [];
     s.moodPack[side] = d.moodPack[side].map((def, i) => {
@@ -718,10 +959,18 @@ function normalizeDay(v){
       checkinTime: typeof s.checkinTime === "string" ? s.checkinTime : null,
       food: {
         lunch: (s.food && s.food.lunch) || null,
-        dinner: (s.food && s.food.dinner) || null
+        dinner: (s.food && s.food.dinner) || null,
+        snacks: (s.food && Array.isArray(s.food.snacks))
+          ? s.food.snacks.slice(0,3).map(x => ({
+              name: (x && typeof x.name === "string") ? x.name : "",
+              img:  (x && typeof x.img === "string") ? x.img : null,
+              time: (x && typeof x.time === "string") ? x.time : null
+            }))
+          : []
       },
       diary: typeof s.diary === "string" ? s.diary : "",
-      mood: typeof s.mood === "number" ? s.mood : null
+      mood: typeof s.mood === "number" ? s.mood : null,
+      fire: typeof s.fire === "string" ? s.fire : null
     };
   });
   return d;
@@ -891,7 +1140,9 @@ function renderLockState(){
   $("lockOverlay").classList.toggle("hidden", !!mine.checkin);
   $("selfiesCard").style.display = mine.checkin ? "block" : "none";
   if (mine.checkin) renderTodaySelfies();
+  renderStreak();
   updateTabLocks();
+  updateDogVisibility();
 }
 
 // Shows a stored moment in the poster's OWN time zone, so her 8:12am in
@@ -936,7 +1187,7 @@ function updateTabLocks(){
   });
 }
 
-function renderFood(){
+function renderFood(force){
   const mine = currentDay[mySide].food;
   $("lunchPhotoBtn").innerHTML  = mine.lunch  && mine.lunch.img  ? `<img src="${mine.lunch.img}">`  : "＋";
   $("dinnerPhotoBtn").innerHTML = mine.dinner && mine.dinner.img ? `<img src="${mine.dinner.img}">` : "＋";
@@ -945,22 +1196,41 @@ function renderFood(){
     const val = (mine[meal] && mine[meal].caption) || "";
     if (document.activeElement !== input) input.value = val;   // don't fight the keyboard
   });
+  renderSnacks(force);
 
+  const cards = foodPolaroids(currentDay);
+  $("foodGallery").innerHTML = cards.length ? cards.join("") : '<div class="empty">nothing on the table yet today 🍽️</div>';
+}
+
+// One day record in, polaroids out — used for today's table and for every
+// day you open in the past-two-weeks list.
+function foodPolaroids(dayObj){
   const names = settings.names;
   const cards = [];
   ["A","B"].forEach(s => {
-    ["lunch","dinner"].forEach(meal => {
-      const item = currentDay[s].food[meal];
-      if (item && item.img){
-        const capText = item.caption ? escapeHtml(item.caption) : meal;
-        const at = clockTime(item.time, s);
-        cards.push(`<div class="polaroid"><img src="${item.img}">
-          <div class="cap">${capText}</div>
-          <div class="tag">${escapeHtml(names[s])} · ${at || meal}</div></div>`);
-      }
+    const side = dayObj[s] || {};
+    const food = side.food || {};
+    [["lunch","🍙"],["dinner","🍚"]].forEach(pair => {
+      const meal = pair[0], emo = pair[1];
+      const item = food[meal];
+      if (!item || (!item.img && !String(item.caption || "").trim())) return;
+      const capText = item.caption ? escapeHtml(item.caption) : meal;
+      const at = clockTime(item.time, s);
+      const pic = item.img ? `<img src="${item.img}">` : `<div class="ph">${emo}</div>`;
+      cards.push(`<div class="polaroid">${pic}
+        <div class="cap">${capText}</div>
+        <div class="tag">${escapeHtml(names[s])} · ${at || meal}</div></div>`);
+    });
+    (food.snacks || []).forEach(sn => {
+      if (!sn || (!sn.img && !String(sn.name || "").trim())) return;
+      const pic = sn.img ? `<img src="${sn.img}">` : `<div class="ph">${escapeHtml(snackEmoji(sn.name))}</div>`;
+      const at = clockTime(sn.time, s);
+      cards.push(`<div class="polaroid">${pic}
+        <div class="cap">${escapeHtml(snackLabel(sn.name))}</div>
+        <div class="tag">${escapeHtml(names[s])} · ${at || "snack"}</div></div>`);
     });
   });
-  $("foodGallery").innerHTML = cards.length ? cards.join("") : '<div class="empty">nothing on the table yet today 🍽️</div>';
+  return cards;
 }
 
 function renderDiaryToday(){
@@ -1435,11 +1705,18 @@ async function openSettingsModal(){
   $("setSideA").classList.toggle("selected", mySide !== "B");
   $("setSideB").classList.toggle("selected", mySide === "B");
 
+  $("setDogOn").checked = dogEnabled();
+
   renderMoodPackEditor();
   renderLetterEditor();
   renderHeader();
   $("settingsModal").classList.remove("hidden");
 }
+
+$("setDogOn").addEventListener("change", (e) => {
+  localStorage.setItem("dogOff", e.target.checked ? "0" : "1");
+  updateDogVisibility();
+});
 
 $("openSettings").addEventListener("click", openSettingsModal);
 $("closeSettings").addEventListener("click", () => $("settingsModal").classList.add("hidden"));
@@ -1545,7 +1822,7 @@ function switchTab(tab){
   document.querySelectorAll("nav.tabbar button").forEach(b => b.classList.remove("active"));
   $("panel-"+tab).classList.add("active");
   document.querySelector(`nav.tabbar button[data-tab="${tab}"]`).classList.add("active");
-  if (tab === "food") renderFood();
+  if (tab === "food"){ renderFood(true); renderFoodHistory(); }
   if (tab === "diary"){ renderDiaryToday(); renderDiaryHistory(); }
   if (tab === "mood") renderMood();
 }
@@ -1651,6 +1928,555 @@ function fallbackAvatar(val){
   return "data:image/svg+xml;base64," + btoa(svg);
 }
 
+/* ---------------- selfie rules ----------------
+   The rule sheet lives in shared settings so both phones see the same
+   examples. The photos are added by you: tap the little "i" five times
+   (anywhere it appears) and the boxes become taps-to-add.              */
+
+let rulesEdit = false;
+let rulesTaps = [];
+
+function captureRuleEdits(){
+  document.querySelectorAll("#rulesModal .rule-cap-input").forEach(inp => {
+    const kind = inp.dataset.kind, i = parseInt(inp.dataset.i, 10);
+    if (settings.selfieRules[kind] && settings.selfieRules[kind][i]){
+      settings.selfieRules[kind][i].caption = inp.value;
+    }
+  });
+}
+
+function renderRules(){
+  const r = settings.selfieRules;
+  [["good","rulesGood"],["bad","rulesBad"]].forEach(([kind, boxId]) => {
+    $(boxId).innerHTML = r[kind].map((e, i) => {
+      const placeholder = rulesEdit ? "＋" : "📷";
+      const pic = e.img ? `<img src="${e.img}" alt="">` : placeholder;
+      const cap = rulesEdit
+        ? `<input type="text" class="rule-cap-input" data-kind="${kind}" data-i="${i}" value="${escapeHtml(e.caption)}">`
+        : `<div class="rule-cap">${escapeHtml(e.caption)}</div>`;
+      return `<div class="rule-item${rulesEdit ? " editing" : ""}">
+        <div class="rule-pic${e.img ? " filled" : ""}" data-kind="${kind}" data-i="${i}">${pic}</div>
+        ${cap}
+      </div>`;
+    }).join("");
+  });
+  $("rulesEditBar").classList.toggle("hidden", !rulesEdit);
+}
+
+function bumpRulesTaps(){
+  const now = Date.now();
+  rulesTaps = rulesTaps.filter(t => now - t < 3000).concat(now);
+  if (rulesTaps.length < 5) return;
+  rulesTaps = [];
+  if (rulesEdit) captureRuleEdits();
+  rulesEdit = !rulesEdit;
+  toast(rulesEdit ? "photo boxes unlocked — tap one 📸" : "photo boxes locked again");
+  renderRules();
+}
+
+function openRules(){
+  bumpRulesTaps();
+  renderRules();
+  $("rulesModal").classList.remove("hidden");
+}
+
+function pickRulePhoto(kind, i){
+  const input = document.createElement("input");
+  input.type = "file"; input.accept = "image/*";
+  input.onchange = async () => {
+    if (!input.files[0]) return;
+    try{
+      const b64 = await resizeImageFile(input.files[0], 320, 0.62);
+      captureRuleEdits();
+      settings.selfieRules[kind][i].img = b64;
+      renderRules();
+      toast("added — remember to save ✓");
+    }catch(e){ toast("couldn't load that photo"); }
+  };
+  input.click();
+}
+
+async function saveRules(){
+  captureRuleEdits();
+  const btn = $("saveRulesBtn");
+  btn.disabled = true; btn.textContent = "saving…";
+  const ok = await saveSettingsPatch({
+    "selfieRules.good": settings.selfieRules.good,
+    "selfieRules.bad": settings.selfieRules.bad
+  });
+  btn.disabled = false; btn.textContent = "save the rules";
+  if (ok){ rulesEdit = false; renderRules(); toast("rules saved ✓"); }
+}
+
+$("rulesBtnHome").addEventListener("click", openRules);
+$("rulesBtnCard").addEventListener("click", openRules);
+$("rulesTapBadge").addEventListener("click", bumpRulesTaps);
+$("closeRules").addEventListener("click", () => { if (rulesEdit) captureRuleEdits(); $("rulesModal").classList.add("hidden"); });
+$("saveRulesBtn").addEventListener("click", saveRules);
+$("rulesModal").addEventListener("click", (e) => {
+  const pic = e.target.closest(".rule-pic");
+  if (pic && rulesEdit) pickRulePhoto(pic.dataset.kind, parseInt(pic.dataset.i, 10));
+});
+
+/* ---------------- snack corner ----------------
+   Tucked away behind a dropdown on purpose: three empty boxes staring at
+   you every day is a guilt trip, and this is not that kind of app.     */
+
+let snackOpen = false;
+
+function snackEmoji(name){
+  const first = String(name || "").trim().split(" ")[0];
+  try{
+    if (first && /[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/u.test(first)) return first;
+  }catch(e){}
+  return "🍬";
+}
+function snackLabel(name){
+  const s = String(name || "").trim();
+  if (!s) return "a little something";
+  const parts = s.split(" ");
+  if (parts.length > 1 && parts[0] === snackEmoji(s)) return parts.slice(1).join(" ");
+  return s;
+}
+function mySnacks(){
+  const arr = (currentDay && currentDay[mySide] && currentDay[mySide].food.snacks) || [];
+  return arr.slice(0, 3);
+}
+async function saveSnacks(arr){
+  const ok = await saveMySide({ "food.snacks": arr.slice(0, 3) });
+  if (ok) renderFood(true);
+  return ok;
+}
+
+function renderSnacks(force){
+  const arr = mySnacks();
+  const filled = arr.filter(s => s && (s.name || s.img)).length;
+  $("snackCount").textContent = filled
+    ? (filled === 1 ? "one today" : filled + " today")
+    : "nothing yet, and that's fine";
+  $("snackToggle").setAttribute("aria-expanded", snackOpen ? "true" : "false");
+  $("snackBody").classList.toggle("hidden", !snackOpen);
+  if (!snackOpen) return;
+  // don't yank a dropdown out from under a thumb mid-choice
+  const active = document.activeElement;
+  if (!force && active && active.closest && active.closest("#snackBody")) return;
+
+  let html = arr.map((s, i) => {
+    const preset = SNACK_OPTIONS.indexOf(s.name) !== -1;
+    const other = !!s.name && !preset;
+    return `<div class="snack-row">
+      <div class="snack-photo${s.img ? " filled" : ""}" data-i="${i}">${s.img ? `<img src="${s.img}" alt="">` : "＋"}</div>
+      <div class="snack-fields">
+        <select class="snack-select" data-i="${i}">
+          <option value=""${s.name ? "" : " selected"}>pick a snack…</option>
+          ${SNACK_OPTIONS.map(o => `<option value="${escapeHtml(o)}"${o === s.name ? " selected" : ""}>${escapeHtml(o)}</option>`).join("")}
+          <option value="__other"${other ? " selected" : ""}>✏️ something else…</option>
+        </select>
+        <input type="text" class="snack-other${other ? "" : " hidden"}" data-i="${i}" placeholder="what was it?" value="${other ? escapeHtml(s.name) : ""}">
+      </div>
+      <button class="snack-del" data-i="${i}" aria-label="remove this one">✕</button>
+    </div>`;
+  }).join("");
+
+  html += arr.length < 3
+    ? `<button class="btn green block small" id="addSnackBtn">＋ add ${arr.length ? "another" : "a snack"}</button>`
+    : `<div class="hint" style="text-align:center;">three is the limit byy 🍬</div>`;
+  $("snackBody").innerHTML = html;
+}
+
+$("snackToggle").addEventListener("click", () => {
+  snackOpen = !snackOpen;
+  renderSnacks(true);
+});
+
+$("snackBody").addEventListener("click", async (e) => {
+  if (e.target.closest("#addSnackBtn")){
+    const arr = mySnacks();
+    if (arr.length >= 3) return;
+    arr.push({ name:"", img:null, time:null });
+    await saveSnacks(arr);
+    return;
+  }
+  const del = e.target.closest(".snack-del");
+  if (del){
+    const arr = mySnacks();
+    arr.splice(parseInt(del.dataset.i, 10), 1);
+    await saveSnacks(arr);
+    return;
+  }
+  const photo = e.target.closest(".snack-photo");
+  if (photo){
+    const i = parseInt(photo.dataset.i, 10);
+    const input = document.createElement("input");
+    input.type = "file"; input.accept = "image/*";
+    input.onchange = async () => {
+      if (!input.files[0]) return;
+      try{
+        const b64 = await resizeImageFile(input.files[0], 380, 0.65);
+        const arr = mySnacks();
+        if (!arr[i]) return;
+        arr[i].img = b64;
+        arr[i].time = arr[i].time || new Date().toISOString();
+        await saveSnacks(arr);
+        toast("snack logged 🍬");
+      }catch(err){ toast("couldn't load that photo"); }
+    };
+    input.click();
+  }
+});
+
+$("snackBody").addEventListener("change", async (e) => {
+  const sel = e.target.closest(".snack-select");
+  if (sel){
+    const i = parseInt(sel.dataset.i, 10);
+    const arr = mySnacks();
+    if (!arr[i]) return;
+    if (sel.value === "__other"){
+      // reveal the free-text box without a round trip to the server
+      const row = sel.closest(".snack-row");
+      const inp = row.querySelector(".snack-other");
+      inp.classList.remove("hidden");
+      inp.focus();
+      return;
+    }
+    arr[i].name = sel.value;
+    arr[i].time = arr[i].time || new Date().toISOString();
+    await saveSnacks(arr);
+    return;
+  }
+  const other = e.target.closest(".snack-other");
+  if (other){
+    const i = parseInt(other.dataset.i, 10);
+    const arr = mySnacks();
+    if (!arr[i]) return;
+    arr[i].name = other.value.trim();
+    arr[i].time = arr[i].time || new Date().toISOString();
+    await saveSnacks(arr);
+  }
+});
+
+/* ---------------- the past two weeks ----------------
+   Every day sticks around for 14 days and then rolls off the bottom, so
+   there's always a whole previous week to look back at. Days load one at
+   a time, when you open them — pulling 14 days of photos up front would
+   cost megabytes for something you probably won't scroll through.      */
+
+const HISTORY_DAYS = 13;            // plus today = a rolling 14-day window
+const dayCache = {};
+const histOpen = {};
+
+function prevDayStr(ds){
+  const d = new Date(ds + "T12:00:00Z");
+  if (isNaN(d.getTime())) return ds;
+  d.setUTCDate(d.getUTCDate() - 1);
+  return d.toISOString().slice(0, 10);
+}
+// "monday 18 sep 2026" — written out by hand rather than left to a locale,
+// which likes to turn september into "sept" and add commas.
+const WEEKDAYS = ["sunday","monday","tuesday","wednesday","thursday","friday","saturday"];
+const MONTHS = ["jan","feb","mar","apr","may","jun","jul","aug","sep","oct","nov","dec"];
+function prettyDay(ds){
+  const [y, m, d] = ds.split("-").map(Number);
+  const dt = new Date(Date.UTC(y, m - 1, d));
+  if (isNaN(dt.getTime())) return ds;
+  return WEEKDAYS[dt.getUTCDay()] + " " + d + " " + MONTHS[m - 1] + " " + y;
+}
+function historyDays(){
+  const out = [];
+  let ds = currentDayStr || todayStr();
+  for (let i = 0; i < HISTORY_DAYS; i++){ ds = prevDayStr(ds); out.push(ds); }
+  return out;
+}
+
+function dayBodyHtml(ds){
+  const d = dayCache[ds];
+  if (!d) return '<div class="empty">nothing saved that day</div>';
+  const cards = foodPolaroids(d);
+  const fire = (d.A.fire && d.B.fire)
+    ? '<div class="hint" style="margin:0 0 8px;">🔥 you both kept the streak this day</div>' : "";
+  return fire + (cards.length
+    ? `<div class="gallery">${cards.join("")}</div>`
+    : '<div class="empty">no food logged that day</div>');
+}
+
+function renderFoodHistory(){
+  const box = $("foodHistory");
+  if (!box || !settings) return;
+  box.innerHTML = historyDays().map((ds, i) => {
+    const open = !!histOpen[ds];
+    return `<div class="day-acc${open ? " open" : ""}" data-ds="${ds}">
+      <button class="day-head" data-ds="${ds}">
+        <span class="dn">${prettyDay(ds)}</span>
+        ${i === 0 ? '<span class="badge">yesterday</span>' : ""}
+        <span class="chev">▾</span>
+      </button>
+      <div class="day-body${open ? "" : " hidden"}" id="dayBody-${ds}">${open ? dayBodyHtml(ds) : ""}</div>
+    </div>`;
+  }).join("");
+}
+
+$("foodHistory").addEventListener("click", async (e) => {
+  const head = e.target.closest(".day-head");
+  if (!head) return;
+  const ds = head.dataset.ds;
+  if (histOpen[ds]){ delete histOpen[ds]; renderFoodHistory(); return; }
+  histOpen[ds] = true;
+  renderFoodHistory();
+  if (ds in dayCache) return;
+  const body = $("dayBody-" + ds);
+  if (body) body.innerHTML = '<div class="hint">loading…</div>';
+  try{
+    dayCache[ds] = normalizeDay(await apiGet(dayKey(ds)));
+  }catch(err){
+    const b = $("dayBody-" + ds);
+    if (b) b.innerHTML = '<div class="empty">couldn\'t load that day</div>';
+    return;
+  }
+  const b2 = $("dayBody-" + ds);
+  if (b2) b2.innerHTML = dayBodyHtml(ds);
+});
+
+/* ---------------- the streak ----------------
+   It's OURS, not mine: a day only counts once you've BOTH hit the fire.
+   Each phone stores its own hit in that day's record, and whichever of
+   you sees both hits first moves the counter. The move is computed from
+   the stored last day, so if you both do it at once you land on the same
+   number instead of double-counting.                                   */
+
+function streakView(){
+  const st = (settings && settings.streak) || { count:0, lastDay:null, best:0 };
+  const today = currentDayStr || todayStr();
+  let count = st.count || 0;
+  if (st.lastDay !== today && st.lastDay !== prevDayStr(today)) count = 0;
+  return { count, lockedToday: st.lastDay === today, best: st.best || 0 };
+}
+
+let advancing = false;
+async function maybeAdvanceStreak(){
+  if (!settings || !currentDay || !currentDayStr || offline || advancing) return;
+  if (!(currentDay.A.fire && currentDay.B.fire)) return;
+  const st = settings.streak || { count:0, lastDay:null, best:0 };
+  if (st.lastDay === currentDayStr) return;
+  advancing = true;
+  const next = (st.lastDay === prevDayStr(currentDayStr)) ? (st.count || 0) + 1 : 1;
+  const best = Math.max(st.best || 0, next);
+  const ok = await saveSettingsPatch({
+    "streak.count": next, "streak.lastDay": currentDayStr, "streak.best": best
+  });
+  advancing = false;
+  if (ok){
+    settings.streak = { count: next, lastDay: currentDayStr, best };
+    renderStreak();
+  }
+}
+
+function renderStreak(){
+  if (!settings || !currentDay || !mySide) return;
+  const unlocked = !!currentDay[mySide].checkin;
+  $("streakCard").style.display = unlocked ? "block" : "none";
+  if (!unlocked) return;
+
+  const v = streakView();
+  const other = otherSide(mySide);
+  const mineHit = !!currentDay[mySide].fire;
+  const theirHit = !!currentDay[other].fire;
+  const names = settings.names;
+
+  $("streakNum").textContent = v.count;
+  $("streakLabel").textContent = (v.count === 1 ? "day in a row" : "days in a row");
+
+  const btn = $("fireBtn");
+  btn.classList.toggle("done", mineHit);
+  btn.disabled = mineHit;
+  btn.setAttribute("aria-label", mineHit ? "you already hit the fire today" : "hit the fire for today");
+
+  let status;
+  if (mineHit && theirHit) status = "today is locked in 🔥";
+  else if (mineHit) status = "waiting for " + names[other] + " to hit hers";
+  else if (theirHit) status = names[other] + " already hit hers — your turn!";
+  else if (v.count > 0) status = "hit the fire to keep it alive";
+  else status = "hit the fire to start one";
+  $("streakStatus").textContent = status;
+
+  $("streakPeople").innerHTML = ["A","B"].map(s => {
+    const lit = !!currentDay[s].fire;
+    return `<div class="p${lit ? " lit" : ""}"><span class="st">🔥</span>${escapeHtml(names[s])}</div>`;
+  }).join("");
+
+  $("streakBest").textContent = v.best > 0 ? "longest ever: " + v.best + (v.best === 1 ? " day" : " days") : "";
+}
+
+async function hitFire(){
+  if (!currentDay || !mySide || currentDay[mySide].fire) return;
+  const btn = $("fireBtn");
+  btn.disabled = true;
+  const ok = await saveMySide({ fire: new Date().toISOString() });
+  if (!ok){ btn.disabled = false; return; }
+  btn.classList.add("pop");
+  setTimeout(() => btn.classList.remove("pop"), 600);
+  await maybeAdvanceStreak();
+  renderStreak();
+  showDogPopup();
+}
+$("fireBtn").addEventListener("click", hitFire);
+
+/* ---------------- maltise nhoy ----------------
+   A small dog who lives at the bottom of the screen. She wanders, she
+   stops to think about nothing, and she smiles when you tap her.       */
+
+const DOG_LINES = ["nhoy!", "woof ♡", "hehe", "pat pat", "hi byy", "♡ ♡ ♡", "bork", "nhoy nhoy", "mwah"];
+const DOG_NAME = "maltise nhoy";
+
+function dogSVG(){
+  return `<svg viewBox="0 0 66 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <ellipse cx="33" cy="60" rx="19" ry="3.2" fill="rgba(74,57,46,0.16)"/>
+    <g class="leg-a">
+      <rect x="13" y="45" width="9.5" height="13" rx="4.75" fill="#F3EDE2" stroke="#4A392E" stroke-width="2"/>
+      <rect x="43.5" y="45" width="9.5" height="13" rx="4.75" fill="#F3EDE2" stroke="#4A392E" stroke-width="2"/>
+    </g>
+    <g class="leg-b">
+      <rect x="24" y="46" width="9" height="12" rx="4.5" fill="#FFFDF8" stroke="#4A392E" stroke-width="2"/>
+      <rect x="33" y="46" width="9" height="12" rx="4.5" fill="#FFFDF8" stroke="#4A392E" stroke-width="2"/>
+    </g>
+    <g class="d-body">
+      <path d="M51 42 C60 41 62 33 59 28 C57 25 53 26 53 29 C53 32 56 33 57 31"
+            fill="#FFFDF8" stroke="#4A392E" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/>
+      <ellipse cx="33" cy="42" rx="19" ry="13.5" fill="#FFFDF8" stroke="#4A392E" stroke-width="2.4"/>
+      <ellipse cx="14.5" cy="25" rx="6.8" ry="12" transform="rotate(-14 14.5 25)" fill="#F7F1E6" stroke="#4A392E" stroke-width="2.4"/>
+      <ellipse cx="51.5" cy="25" rx="6.8" ry="12" transform="rotate(14 51.5 25)" fill="#F7F1E6" stroke="#4A392E" stroke-width="2.4"/>
+      <circle cx="33" cy="22" r="15" fill="#FFFDF8" stroke="#4A392E" stroke-width="2.4"/>
+      <g>
+        <path d="M33 8 L24.5 3.5 L24.5 12.5 Z" fill="#F9D1D9" stroke="#4A392E" stroke-width="1.8" stroke-linejoin="round"/>
+        <path d="M33 8 L41.5 3.5 L41.5 12.5 Z" fill="#F9D1D9" stroke="#4A392E" stroke-width="1.8" stroke-linejoin="round"/>
+        <circle cx="33" cy="8" r="2.8" fill="#E38098" stroke="#4A392E" stroke-width="1.6"/>
+      </g>
+      <g class="d-cheeks">
+        <ellipse cx="22" cy="27" rx="3.6" ry="2.4" fill="#F9D1D9"/>
+        <ellipse cx="44" cy="27" rx="3.6" ry="2.4" fill="#F9D1D9"/>
+      </g>
+      <g class="d-eyes">
+        <circle cx="27" cy="20.5" r="2.7" fill="#4A392E"/>
+        <circle cx="39" cy="20.5" r="2.7" fill="#4A392E"/>
+        <circle cx="28" cy="19.6" r="0.9" fill="#FFFDF8"/>
+        <circle cx="40" cy="19.6" r="0.9" fill="#FFFDF8"/>
+      </g>
+      <g class="d-eyes-happy">
+        <path d="M23.8 21.5 Q27 17.6 30.2 21.5" fill="none" stroke="#4A392E" stroke-width="2.2" stroke-linecap="round"/>
+        <path d="M35.8 21.5 Q39 17.6 42.2 21.5" fill="none" stroke="#4A392E" stroke-width="2.2" stroke-linecap="round"/>
+      </g>
+      <ellipse cx="33" cy="26.5" rx="3.1" ry="2.5" fill="#4A392E"/>
+      <path class="d-mouth" d="M33 29 Q30 32 27.4 29.6 M33 29 Q36 32 38.6 29.6"
+            fill="none" stroke="#4A392E" stroke-width="1.8" stroke-linecap="round"/>
+      <path class="d-smile" d="M26 29 Q33 37 40 29 Z" fill="#E38098" stroke="#4A392E" stroke-width="1.9" stroke-linejoin="round"/>
+    </g>
+  </svg>`;
+}
+
+const dog = { x: 30, dir: 1, speed: 28, pause: 1.2, happyUntil: 0, running: false, last: 0 };
+let dogReduced = false;
+try{ dogReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches; }catch(e){}
+
+function dogEnabled(){ return localStorage.getItem("dogOff") !== "1"; }
+
+function dogSpan(){
+  const app = document.querySelector(".app").getBoundingClientRect();
+  return Math.max(0, app.width - 74);
+}
+function placeDog(){
+  const wrap = $("dogWrap");
+  const app = document.querySelector(".app").getBoundingClientRect();
+  const span = dogSpan();
+  if (dog.x > span) dog.x = span;
+  if (dog.x < 0) dog.x = 0;
+  wrap.style.left = Math.round(app.left + 4) + "px";
+  wrap.style.transform = "translateX(" + Math.round(dog.x) + "px)";
+  wrap.querySelector(".dog-flip").style.transform = "scaleX(" + dog.dir + ")";
+}
+
+function dogFrame(ts){
+  if (!dog.running) return;
+  const dt = Math.min(0.05, (ts - dog.last) / 1000 || 0);
+  dog.last = ts;
+  const wrap = $("dogWrap");
+
+  if (document.hidden || dogReduced || Date.now() < dog.happyUntil){
+    wrap.classList.remove("dog-walk");
+  } else if (dog.pause > 0){
+    dog.pause -= dt;
+    wrap.classList.remove("dog-walk");
+    if (dog.pause <= 0 && Math.random() < 0.55) dog.dir = -dog.dir;
+  } else {
+    wrap.classList.add("dog-walk");
+    dog.x += dog.dir * dog.speed * dt;
+    const span = dogSpan();
+    if (dog.x <= 0){ dog.x = 0; dog.dir = 1; }
+    else if (dog.x >= span){ dog.x = span; dog.dir = -1; }
+    else if (Math.random() < dt * 0.22) dog.pause = 0.6 + Math.random() * 1.8;
+  }
+  placeDog();
+  requestAnimationFrame(dogFrame);
+}
+
+function dogSmile(){
+  const wrap = $("dogWrap");
+  dog.happyUntil = Date.now() + 2400;
+  wrap.classList.add("dog-happy");
+  wrap.classList.remove("dog-walk");
+
+  const bubble = $("dogBubble");
+  bubble.textContent = DOG_LINES[Math.floor(Math.random() * DOG_LINES.length)];
+  bubble.classList.remove("hidden");
+
+  for (let i = 0; i < 3; i++){
+    const h = document.createElement("span");
+    h.className = "dog-heart";
+    h.textContent = "♡";
+    h.style.setProperty("--dx", (i - 1) * 16 + "px");
+    h.style.animationDelay = (i * 0.12) + "s";
+    wrap.appendChild(h);
+    setTimeout(() => h.remove(), 1500);
+  }
+  clearTimeout(dogSmile._t);
+  dogSmile._t = setTimeout(() => {
+    wrap.classList.remove("dog-happy");
+    bubble.classList.add("hidden");
+  }, 2400);
+}
+
+function updateDogVisibility(){
+  const wrap = $("dogWrap");
+  const flip = $("dogFlip");
+  if (!flip.firstChild) flip.innerHTML = dogSVG();
+  const show = !!(mySide && settings && dogEnabled());
+  wrap.classList.toggle("hidden", !show);
+  if (!show){ dog.running = false; return; }
+  placeDog();
+  if (!dog.running){
+    dog.running = true;
+    dog.last = performance.now();
+    requestAnimationFrame(dogFrame);
+  }
+}
+
+$("dogWrap").addEventListener("click", dogSmile);
+$("dogWrap").addEventListener("keydown", (e) => {
+  if (e.key === "Enter" || e.key === " "){ e.preventDefault(); dogSmile(); }
+});
+window.addEventListener("resize", () => { if (dog.running) placeDog(); });
+
+function showDogPopup(){
+  const both = !!(currentDay.A.fire && currentDay.B.fire);
+  const v = streakView();
+  const other = settings.names[otherSide(mySide)];
+  $("dogPopupStage").innerHTML = dogSVG();
+  $("dogPopupCount").textContent = both ? (v.count + (v.count === 1 ? " day 🔥" : " days 🔥")) : "🔥";
+  $("dogPopupMsg").textContent = both
+    ? "day " + v.count + " together — nhoy is so proud of you two"
+    : "your fire is lit ♡ waiting for " + other + " to hit hers";
+  $("dogPopupModal").classList.remove("hidden");
+}
+$("closeDogPopup").addEventListener("click", () => $("dogPopupModal").classList.add("hidden"));
+
 /* ---------------- passcode gate ---------------- */
 function showPasscodeGate(showError){
   $("passError").classList.toggle("hidden", !showError);
@@ -1685,11 +2511,13 @@ function repaint(){
   if (activeTab === "mood") renderMood();
   if (activeTab === "diary"){ renderDiaryToday(); renderDiaryHistory(); }
   tickLetters();
+  maybeAdvanceStreak();
 }
 
 async function pullDay(ds){
   currentDayStr = ds;
   currentDay = await loadDay(ds);
+  if (activeTab === "food") renderFoodHistory();   // the window just slid a day
 }
 
 async function syncOnce(force){
@@ -1787,6 +2615,8 @@ async function init(){
     setInterval(() => { renderCountdown(); tickLetters(); }, 1000);
     scheduleSync();
   }
+
+  updateDogVisibility();
 
   if (!mySide){
     $("pickA").textContent = settings.names.A;
