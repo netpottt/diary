@@ -686,7 +686,7 @@
     <h3 class="rules-h bad">✗ don't do this my byy</h3>
     <div id="rulesBad"></div>
 
-    <div class="hint" style="text-align:center; margin-top:14px;">psst — tap the little <b>i</b> five times to add or change these photos</div>
+    <div class="hint hidden" id="rulesHint" style="text-align:center; margin-top:14px;">psst — tap the little <b>i</b> five times to add or change these photos</div>
   </div>
 </div>
 
@@ -1961,15 +1961,19 @@ function renderRules(){
     }).join("");
   });
   $("rulesEditBar").classList.toggle("hidden", !rulesEdit);
+  // The five-tap trick is only spelled out on a phone that has already used
+  // it — on anyone else's phone the sheet is just the rules.
+  $("rulesHint").classList.toggle("hidden", localStorage.getItem("rulesEditor") !== "1");
 }
 
 function bumpRulesTaps(){
   const now = Date.now();
-  rulesTaps = rulesTaps.filter(t => now - t < 3000).concat(now);
+  rulesTaps = rulesTaps.filter(t => now - t < 5000).concat(now);
   if (rulesTaps.length < 5) return;
   rulesTaps = [];
   if (rulesEdit) captureRuleEdits();
   rulesEdit = !rulesEdit;
+  if (rulesEdit) localStorage.setItem("rulesEditor", "1");
   toast(rulesEdit ? "photo boxes unlocked — tap one 📸" : "photo boxes locked again");
   renderRules();
 }
