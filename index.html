@@ -421,7 +421,8 @@
   .dog-wrap svg{ display:block; width:100%; height:100%; overflow:visible; }
   .dog-flip{ display:block; width:100%; height:100%; transition:transform .18s ease; }
   .dog-bubble{ position:absolute; bottom:100%; left:50%; margin-bottom:2px; transform:translateX(-50%);
-    background:var(--white); border:2px solid var(--espresso); border-radius:12px; padding:2px 9px; white-space:nowrap;
+    background:var(--white); border:2px solid var(--espresso); border-radius:12px; padding:3px 9px;
+    max-width:170px; width:max-content; white-space:normal; text-align:center; line-height:1.2;
     font-family:'Gaegu',cursive; font-weight:700; font-size:13px; box-shadow:2px 2px 0 rgba(74,57,46,0.18); }
   .dog-heart{ position:absolute; bottom:64%; left:50%; font-size:14px; pointer-events:none;
     animation:heartUp 1.15s ease-out forwards; }
@@ -636,6 +637,9 @@
 
     <label class="field-label" style="margin-top:18px;">maltise nhoy 🐶</label>
     <label class="check-row"><input type="checkbox" id="setDogOn"> let her walk around (this phone only)</label>
+    <label class="field-label">what she says when you tap her</label>
+    <textarea id="setDogLines" rows="5" placeholder="one line per tap&#10;nhoy!&#10;woof ♡"></textarea>
+    <div class="hint">one per line — she picks one at random. leave it empty to go back to hers.</div>
 
     <button class="btn green block" id="saveSettingsBtn" style="margin-top:14px;">save settings</button>
     <div class="letter-editor hidden" id="letterEditor"></div>
@@ -864,6 +868,7 @@ function defaultSettings(){
     },
     letters: { A: null, B: null },   // letters.A is the letter written TO A
     streak: { count: 0, lastDay: null, best: 0 },   // shared — both of you have to hit it
+    dogLines: DOG_LINES.slice(),
     selfieRules: {
       good: DEFAULT_RULES.good.map(c => ({ caption: c, img: null })),
       bad:  DEFAULT_RULES.bad.map(c => ({ caption: c, img: null }))
@@ -923,6 +928,9 @@ function normalizeSettings(v){
       best:    (v.streak && typeof v.streak.best === "number") ? v.streak.best : 0
     },
     selfieRules: { good: [], bad: [] },
+    dogLines: Array.isArray(v.dogLines)
+      ? v.dogLines.map(x => String(x).trim()).filter(Boolean).slice(0, 40)
+      : DOG_LINES.slice(),
     initialized: !!v.initialized
   };
   ["good","bad"].forEach(kind => {
@@ -1706,6 +1714,7 @@ async function openSettingsModal(){
   $("setSideB").classList.toggle("selected", mySide === "B");
 
   $("setDogOn").checked = dogEnabled();
+  $("setDogLines").value = dogLines().join("\n");
 
   renderMoodPackEditor();
   renderLetterEditor();
@@ -1757,6 +1766,7 @@ $("saveSettingsBtn").addEventListener("click", async () => {
   } else {
     settings.meetDate = null;
   }
+  settings.dogLines = parseDogLines($("setDogLines").value);
   settings.initialized = true;
 
   const sideChanged = chosenSide !== mySide;
@@ -1772,6 +1782,7 @@ $("saveSettingsBtn").addEventListener("click", async () => {
     "zones.A": settings.zones.A,
     "zones.B": settings.zones.B,
     ["moodPack."+chosenSide]: settings.moodPack[chosenSide],
+    dogLines: settings.dogLines,
     initialized: true
   });
 
@@ -2331,6 +2342,17 @@ $("fireBtn").addEventListener("click", hitFire);
 const DOG_LINES = ["nhoy!", "woof ♡", "hehe", "pat pat", "hi byy", "♡ ♡ ♡", "bork", "nhoy nhoy", "mwah"];
 const DOG_NAME = "maltise nhoy";
 
+// What she says when you tap her. Editable in settings and shared, so a line
+// you write shows up on her phone too. An empty box falls back to the originals.
+function dogLines(){
+  const arr = (settings && Array.isArray(settings.dogLines))
+    ? settings.dogLines.map(x => String(x).trim()).filter(Boolean) : [];
+  return arr.length ? arr : DOG_LINES;
+}
+function parseDogLines(text){
+  return String(text || "").split("\n").map(l => l.trim()).filter(Boolean).slice(0, 40);
+}
+
 function dogSVG(){
   return `<svg viewBox="0 0 66 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
     <ellipse cx="33" cy="60" rx="19" ry="3.2" fill="rgba(74,57,46,0.16)"/>
@@ -2428,8 +2450,16 @@ function dogSmile(){
   wrap.classList.remove("dog-walk");
 
   const bubble = $("dogBubble");
-  bubble.textContent = DOG_LINES[Math.floor(Math.random() * DOG_LINES.length)];
+  const lines = dogLines();
+  bubble.textContent = lines[Math.floor(Math.random() * lines.length)];
   bubble.classList.remove("hidden");
+  // a long line on a narrow phone would hang off the edge, so nudge it back on
+  bubble.style.transform = "translateX(-50%)";
+  const r = bubble.getBoundingClientRect();
+  let shift = 0;
+  if (r.left < 6) shift = 6 - r.left;
+  else if (r.right > window.innerWidth - 6) shift = (window.innerWidth - 6) - r.right;
+  if (shift) bubble.style.transform = "translateX(calc(-50% + " + Math.round(shift) + "px))";
 
   for (let i = 0; i < 3; i++){
     const h = document.createElement("span");
